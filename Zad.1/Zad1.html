@@ -47,11 +47,18 @@
 		placeholder="https://onet.pl"><br><br>
 		</input>
 		
-		<label for="sciezka_pliku">Sciezka do katalogu w katalogu systemu:</label>
+		<label for="sciezka_pliku">Sciezka do katalogu w katalogu systemu (male litery):</label>
 		<input type="text" id="sciezka_pliku" name="sciezka_pliku"
-		pattern="([a-z]{1}:)\"
-		title="Sciezka do pliku"
-		placeholder="C:\\msdos\example"><br><br>
+		pattern="[a-z]:\\[\\\[a-z]|*\[a-z]]?.*"
+		title="Sciezka do pliku(male litery)"
+		placeholder="c:\msdos\example"><br><br>
+		</input>
+		
+		<label for="sciezka_pliku">Sciezka do katalogu w katalogu systemu (duże litery):</label>
+		<input type="text" id="sciezka_pliku" name="sciezka_pliku"
+		pattern="[a-zA-Z]:\\[\\\S|*\S]?.*"
+		title="Sciezka do pliku(male litery)"
+		placeholder="C:\WinDowS\example"><br><br>
 		</input>
 		
 		<label for="adres_ipv6">Adres Ipv6:</label>

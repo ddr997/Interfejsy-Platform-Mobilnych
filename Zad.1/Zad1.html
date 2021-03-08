@@ -20,27 +20,34 @@
 		</input>
 		
 		<label for="numer_nip">Numer NIP:</label>
-		<input type="numer_nip" id="numer_nip" name="numer_nip"
+		<input type="text" id="numer_nip" name="numer_nip"
 		pattern="[A-Z]{2}[0-9]{10}"
 		title="Numer NIP"
 		placeholder="PL1234567890"><br><br>
 		</input>
 		
 		<label for="numer_dowodu">Numer dowodu:</label>
-		<input type="numer_dowodu" id="numer_dowodu" name="numer_dowodu"
+		<input type="text" id="numer_dowodu" name="numer_dowodu"
 		pattern="[A-Z]{3}[0-9]{6}"
 		title="Numer dowodu"
 		placeholder="ZZA423567"><br><br>
 		</input>
 		
 		<label for="adres_ipv4">Adres Ipv4:</label>
-		<input type="adres_ipv4" id="adres_ipv4" name="adres_ipv4"
+		<input type="text" id="adres_ipv4" name="adres_ipv4"
 		pattern="^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
 		title="Adres Ipvr"
 		placeholder="127.0.0.1"><br><br>
 		</input>
 		
-		
+		<label for="www">Strona WWW:</label>
+		<input type="url" id="www" name="www"
+		pattern="https?://.+"
+		title="Strona WWW"
+		placeholder="https://onet.pl"><br><br>
+		</input>
 		<input type="submit">
+		
+		
 	</form>
 </body>

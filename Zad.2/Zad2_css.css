@@ -1,3 +1,6 @@
-body {
-
+input.form:valid{
+    border: 2px solid green;
 }
+input.form:invalid {
+    border: 2px solid red;
+  }

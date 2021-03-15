@@ -1,6 +1,9 @@
 input.form:valid{
-    border: 2px solid green;
-}
+    border: 2px solid green;}
+
 input.form:invalid{
-    border: 2px solid red;
-  }
+    border: 2px solid red;}
+
+input.form:placeholder-shown{
+    border: 1px solid black;
+}

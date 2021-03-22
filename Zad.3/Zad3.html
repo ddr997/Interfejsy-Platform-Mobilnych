@@ -4,16 +4,6 @@
     <script src="jquery-1.8.3.min.js"></script>
     <script src="jquery-collision.min.js"></script>
     <script src="jquery-ui-draggable-collision.min.js"></script>
-
-    <script type="text/javascript">
-        $(shape).draggable({
-          obstacle:".obstacle",
-          preventCollision: true,
-          containment: "#board",
-          start: function(event,ui) {$(this).removeClass('butNotHere');},
-          stop: function(event,ui) {$(this).addClass('butNotHere');}
-        });
-    </script>
     <script>
         function createDiv() {
             var shape = document.createElement("div");
@@ -22,6 +12,13 @@
             shape.style.width = "150px";
             shape.style.backgroundColor = "#" + ((1<<24)*Math.random() | 0).toString(16);
             shape.style.position = "absolute";
+            $(shape).draggable({
+                obstacle:".butNotHere",
+                preventCollision: true,
+                containment: "#board",
+                start: function(event,ui) {$(this).removeClass('butNotHere');},
+                stop: function(event,ui) {$(this).addClass('butNotHere');}
+             });
             document.querySelector("#blockgen").appendChild(shape).draggable();
         };
     </script>

@@ -6,27 +6,29 @@
     <script src="jquery-ui-draggable-collision.min.js"></script>
 
     <script type="text/javascript">
-        $(b).draggable({
+        $(shape).draggable({
           obstacle:".obstacle",
           preventCollision: true,
           containment: "#board",
+          start: function(event,ui) {$(this).removeClass('butNotHere');},
+          stop: function(event,ui) {$(this).addClass('butNotHere');}
         });
     </script>
     <script>
         function createDiv() {
             var shape = document.createElement("div");
-            shape.className = "b";
+            shape.className = "draggable butNotHere";
             shape.style.height = "150px";
             shape.style.width = "150px";
             shape.style.backgroundColor = "#" + ((1<<24)*Math.random() | 0).toString(16);
             shape.style.position = "absolute";
             document.querySelector("#blockgen").appendChild(shape).draggable();
-        }
+        };
     </script>
 </head>
 <body>
     <div id="board">
-        <div class="obstacle"></div>
+        <div class="obstacle butNotHere"></div>
         <div id=menu><button id="button" onClick="createDiv()">Generuj bloczek</button>
         <div id="blockgen"></div>
         </div>

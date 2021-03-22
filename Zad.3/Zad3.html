@@ -16,6 +16,8 @@
             shape.style.width = "150px";
             shape.style.backgroundColor = "#" + ((1<<24)*Math.random() | 0).toString(16);
             shape.style.position = "absolute";
+            shape.style.top ="20%";
+            shape.style.left ="20%";
             $(shape).draggable({
                 obstacle:".butNotHere",
                 preventCollision: true,

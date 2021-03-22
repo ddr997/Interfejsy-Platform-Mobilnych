@@ -4,13 +4,21 @@
     <script src="jquery-1.8.3.min.js"></script>
     <script src="jquery-collision.min.js"></script>
     <script src="jquery-ui-draggable-collision.min.js"></script>
+
+    <script type="text/javascript">
+    $(function() {
+        $(".b").draggable();
+    });
+    </script>
+
     <script>
         function createDiv() {
             var shape = document.createElement("div");
+            shape.className = "b";
             shape.style.height = "150px";
             shape.style.width = "150px";
             shape.style.backgroundColor = "#" + ((1<<24)*Math.random() | 0).toString(16);
-            document.querySelector("#board").appendChild(shape);
+            document.querySelector("#blockgen").appendChild(shape);
         }
     </script>
 </head>

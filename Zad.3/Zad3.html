@@ -6,9 +6,11 @@
     <script src="jquery-ui-draggable-collision.min.js"></script>
 
     <script type="text/javascript">
-    $(function() {
-        $(".b").draggable();
-    });
+        $(b).draggable({
+          obstacle:".obstacle",
+          preventCollision: true,
+          containment: "#board",
+        });
     </script>
 
     <script>
@@ -18,7 +20,7 @@
             shape.style.height = "150px";
             shape.style.width = "150px";
             shape.style.backgroundColor = "#" + ((1<<24)*Math.random() | 0).toString(16);
-            document.querySelector("#blockgen").appendChild(shape);
+            document.querySelector("#blockgen").appendChild(shape).draggable();
         }
     </script>
 </head>

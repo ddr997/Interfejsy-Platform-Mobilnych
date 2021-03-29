@@ -1,9 +1,43 @@
 <html>
 <head>
     <style>
-        
+body{ 
+  margin: 20px auto; 
+  width: 400px;
+  color: #383838;
+}
+ol li{cursor:move;}
+ol .up, ol .down { float: left; }
+ol .up:before { content: "\f077"; }
+ol .down:before { content: "\f078"; }
+
     </style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
+    <p>ZADANIE 4 - EDYTOWALNA LISTA DRAG & DROP</p>
+    <ol>
+        <li contenteditable="true">
+          <div> <span class = "up"></span><span class = "down"></span> </div>
+          Item 1
+        </li>
+        <li>
+          <div> <span class = "up"></span><span class = "down"></span> </div>
+          Item 2
+        </li>
+        <li>
+          <div> <span class = "up"></span><span class = "down"></span> </div>
+          Item 3
+        </li>
+        <li>
+          <div> <span class = "up"></span><span class = "down"></span> </div>
+          Item 4
+        </li>
+        <li>
+          <div> <span class = "up"></span><span class = "down"></span> </div>
+          Item 5
+        </li>
+      </ol>
 </body>
 </html>

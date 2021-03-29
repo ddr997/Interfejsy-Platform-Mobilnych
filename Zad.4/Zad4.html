@@ -6,7 +6,8 @@ body{
   width: 400px;
   color: #383838;
 }
-li{cursor:move; background-color:greenyellow; border: 1px solid black; height:50px; text-align:center;}
+li{cursor:move; background-color:greenyellow; border: 1px solid black; height:50px;}
+ol{list-style-position:outside;}
 
     </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -20,7 +21,7 @@ $(function() {
 </script>
 </head>
 <body>
-    <p>ZADANIE 4 - EDYTOWALNA LISTA DRAG & DROP</br> Aby dodać element, należy kliknąć myszką przed cyferką, kliknąć "Enter" i poruszać się strzałkami.</p>
+    <p>ZADANIE 4 - EDYTOWALNA LISTA DRAG & DROP</br> Aby dodać element, należy kliknąć myszką przed cyferką (wybrać listę), kliknąć "Enter" i poruszać się strzałkami.</p>
     <ol class="sortable" contenteditable = "true">
         <li>Element 1</li>
         <li>Element 2</li>

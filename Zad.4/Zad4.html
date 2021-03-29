@@ -14,6 +14,12 @@ ol .down:before { content: "\f078"; }
     </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function() {
+    $( "ol" ).sortable();
+    $( "ol" ).disableSelection();
+  });
+</script>
 </head>
 <body>
     <p>ZADANIE 4 - EDYTOWALNA LISTA DRAG & DROP</p>

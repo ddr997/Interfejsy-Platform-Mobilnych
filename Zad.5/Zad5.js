@@ -6,3 +6,5 @@ if (!window.indexedDB) {
     window.alert("Brak wsparcia IndexedDB na twoja przegladarke.")
 }
 
+const EmployeeData = [{id:"01", name:"Jan", age:"20", email:"example@wp.pl"}];
+

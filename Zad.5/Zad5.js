@@ -49,3 +49,47 @@ function loadTable() {
         }
     };
 }
+
+function addEmployee() {
+    var employeeID = $('#add_id').val();
+    var name = $('#add_name').val();
+    var age = $('#add_age').val();
+    var email = $('#add_email').val();
+    var request = db.transaction(["employee"], "readwrite")
+        .objectStore("employee")
+        .add({
+            id: employeeID,
+            name: name,
+            age: age,
+            email: email
+        });
+
+    request.onsuccess = function (event) {
+        loadTable();
+        clearButtons();
+    };
+
+    request.onerror = function (event) {
+        alert("error");
+    }
+}
+
+function deleteEmployee() {
+    var employeeID = $('#delete_id').val();
+    var request = db.transaction(["employee"], "readwrite")
+        .objectStore("employee")
+        .delete(employeeID);
+
+    request.onsuccess = function (event) {
+        loadTable();
+        clearButtons();
+    };
+}
+
+function clearButtons() {
+    $('#add_id').val("");
+    $('#add_name').val("");
+    $('#add_age').val("");
+    $('#add_email').val("");
+    $('delete_id').val("");
+}

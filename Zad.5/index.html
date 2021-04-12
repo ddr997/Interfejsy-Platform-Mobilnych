@@ -1,132 +1,26 @@
-<html>
 <head>
-    <link rel="stylesheet" href="Zad5_css.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
-    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
-    window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
-
-    if (!window.indexedDB) {
-    window.alert("Your browser doesn't support a stable version of IndexedDB.")
-    }
-
-    var customers;
-	var nodeCache = {};
-
-    function init(){
-		
-		// create a store ("table") for the customers
-		customers = new IDBStore({
-			storeName: 'customer',
-			keyPath: 'ID',
-			autoIncrement: true,
-			onStoreReady: refreshTable
-		});
-		
-		// create references for some nodes we have to work with
-		['submit', 'ID', 'imie', 'nazwisko', 'results-container'].forEach(function(id){
-			nodeCache[id] = document.getElementById(id);
-		});
-		
-		// and listen to the form's submit button.
-		nodeCache.submit.addEventListener('click', enterData);
-	}
-	
-	function refreshTable(){
-		customers.getAll(listItems);
-	}
-	
-	function listItems(data){
-		var content = '';
-		data.forEach(function(item){
-			content += tpls.row.replace(/\{([^\}]+)\}/g, function(_, key){
-				return item[key];
-			});
-		});
-		nodeCache['results-container'].innerHTML = tpls.table.replace('{content}', content);
-	}
-	
-	function enterData(){
-		// read data from inputs…
-		var data = {};
-		['customerid','firstname','lastname'].forEach(function(key){
-			var value = nodeCache[key].value.trim();
-			if(value.length){
-				if(key == 'customerid'){ // We want the id to be numeric:
-					value = parseInt(value, 10);
-				}
-				data[key] = value;
-			}
-		});
-		
-		// …and store them away.
-		customers.put(data, function(){
-			clearForm();
-			refreshTable();
-		});
-	}
-	
-	function clearForm(){
-		['customerid','firstname','lastname'].forEach(function(id){
-			nodeCache[id].value = '';
-		});
-	}
-	
-	function deleteItem(id){
-		customers.remove(id, refreshTable);
-	}
-	
-	function updateItem(id){
-		var data = {
-			customerid: id,
-			firstname: document.getElementById('firstname_' + id).value.trim(),
-			lastname: document.getElementById('lastname_' + id).value.trim()
-		};
-		customers.put(data, refreshTable);
-	}
-	
-	// export some functions to the outside to
-	// make the onclick="" attributes work.
-	window.app = {
-		deleteItem: deleteItem,
-		updateItem: updateItem
-	};
-	
-	// go!
-	init();
-	
-
-})();
+            
     </script>
-
 </head>
+
 <body>
-<div>
-    <form>
-    <label for="ID">ID:</label>
-    <input type="text" id="customerid" name="ID"
-    pattern="[0-9]{1-3}"
-    title="ID"
-    placeholder="001"><br><br>
-    </input>
-
-    <label for="imie">Imie:</label>
-    <input type="text" id="firstname" name="imie"
-    pattern="[a-zA-Z]{2,64}"
-    title="Imie"
-    placeholder="Jan"><br><br>
-    </input>
-
-    <label for="nazwisko">Nazwisko</label>
-    <input type="text" id="lastname" name="nazwisko"
-    pattern="[a-zA-Z]{2,64}"
-    title="Nazwisko"
-    placeholder="Kowalski"><br><br>
-    </input>
-
-    <button id="submit">Enter data</button>
-    </form>
-</div>
-<div class="vbox flex" id="results-container">
+    <br>
+    <table border=1>
+        <thead>
+            <th style="width:2em">ID</th>
+            <th style="width:6em">Name</th>
+            <th style="width:2em">Age</th>
+            <th style="width:14em">Email</th>
+        </thead>
+    </table><br>
+    <br>
+    <label for="ID">ID:</label> <input id="add_id" type="text" placeholder="ID" pattern="[0-9]{1-3}"><br>
+    <label for="imie">Imie:</label> <input id="add_name" type="text" placeholder="Jan" pattern="[a-zA-Z]{2,64}" pattern="[a-zA-Z]{2,64}"><br>
+    <label for="wiek">Wiek:</label><input id="add_age" type="text" placeholder="Age" pattern="[0-9]{1-3}"><br>
+    <label for="email">Adres Email:</label> <input id="add_email" type="text" placeholder="email@wp.pl" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"><br>
+    <button onclick="addEmployee()">Insert</button><br><br>
+    <button onclick="deleteEmployee()">Delete</button>
+    <input id="delete_id" type="text" placeholder="ID">
 </body>
-</html>

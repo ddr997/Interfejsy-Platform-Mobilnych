@@ -6,7 +6,7 @@ if (!window.indexedDB) {
     window.alert("Brak wsparcia IndexedDB na twoja przegladarke.")
 }
 
-const EmployeeData = [{id:"01", name:"Jan", age:"20", email:"example@wp.pl"}];
+const EmployeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", email:"example@wp.pl", postal:"22-550"}];
 var db;
 var request = window.indexedDB.open("newDatabase", 1);
 
@@ -40,12 +40,14 @@ function loadTable() {
                 '<tr class="employee">' +
                 '<td class="ID">' + cursor.key + '</td>' +
                 '<td class="Imie">' + cursor.value.name + '</td>' +
+                '<td class="Nazwisko">' + cursor.value.surname + '</td>' +
                 '<td class="Wiek">' + cursor.value.age + '</td>' +
                 '<td class="Email">' + cursor.value.email + '</td>' +
+                '<td class="kod_pocztowy">' + cursor.value.postal + '</td>' +
                 '</tr>');
-            cursor.continue(); // wait for next event
+            cursor.continue();
         } else {
-            $('thead').after(employees); // no more events
+            $('thead').after(employees);
         }
     };
 }
@@ -53,15 +55,19 @@ function loadTable() {
 function addEmployee() {
     var employeeID = $('#add_id').val();
     var name = $('#add_name').val();
+    var surname = $('#add_surname').val();
     var age = $('#add_age').val();
     var email = $('#add_email').val();
+    var postal = $('#add_postal').val();
     var request = db.transaction(["employee"], "readwrite")
         .objectStore("employee")
         .add({
             id: employeeID,
             name: name,
+            surname: surname,
             age: age,
-            email: email
+            email: email,
+            postal: postal
         });
 
     request.onsuccess = function (event) {
@@ -89,7 +95,9 @@ function deleteEmployee() {
 function clearButtons() {
     $('#add_id').val("");
     $('#add_name').val("");
+    $('#add_surname').val("");
     $('#add_age').val("");
     $('#add_email').val("");
+    $('#add_postal').val("");
     $('delete_id').val("");
 }

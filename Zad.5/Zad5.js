@@ -19,3 +19,11 @@ request.onsuccess = function (event) {
     console.log("success: ", db);
     loadTable();
 };
+
+request.onupgradeneeded = function (event) {
+    var db = event.target.result;
+    var objectStore = db.createObjectStore("employee", {keyPath: "id"});
+    for (var i in employeeData) {
+        objectStore.add(employeeData[i]);
+    }
+}

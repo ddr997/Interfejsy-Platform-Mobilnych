@@ -9,7 +9,7 @@ if (!window.indexedDB) {
 
 const EmployeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", email:"example@wp.pl", postal:"22-550"}];
 var db;
-var request = window.indexedDB.open("newDatabase", 1);
+var request = window.indexedDB.open("newDatabase", 2);
 
 request.onerror = function (event) {
     console.log("error: ");

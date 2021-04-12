@@ -1,63 +1,132 @@
 <html>
 <head>
     <link rel="stylesheet" href="Zad5_css.css">
+    <script>
+    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+    window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
+
+    if (!window.indexedDB) {
+    window.alert("Your browser doesn't support a stable version of IndexedDB.")
+    }
+
+    var customers;
+	var nodeCache = {};
+
+    function init(){
+		
+		// create a store ("table") for the customers
+		customers = new IDBStore({
+			storeName: 'customer',
+			keyPath: 'ID',
+			autoIncrement: true,
+			onStoreReady: refreshTable
+		});
+		
+		// create references for some nodes we have to work with
+		['submit', 'ID', 'imie', 'nazwisko', 'results-container'].forEach(function(id){
+			nodeCache[id] = document.getElementById(id);
+		});
+		
+		// and listen to the form's submit button.
+		nodeCache.submit.addEventListener('click', enterData);
+	}
+	
+	function refreshTable(){
+		customers.getAll(listItems);
+	}
+	
+	function listItems(data){
+		var content = '';
+		data.forEach(function(item){
+			content += tpls.row.replace(/\{([^\}]+)\}/g, function(_, key){
+				return item[key];
+			});
+		});
+		nodeCache['results-container'].innerHTML = tpls.table.replace('{content}', content);
+	}
+	
+	function enterData(){
+		// read data from inputs…
+		var data = {};
+		['customerid','firstname','lastname'].forEach(function(key){
+			var value = nodeCache[key].value.trim();
+			if(value.length){
+				if(key == 'customerid'){ // We want the id to be numeric:
+					value = parseInt(value, 10);
+				}
+				data[key] = value;
+			}
+		});
+		
+		// …and store them away.
+		customers.put(data, function(){
+			clearForm();
+			refreshTable();
+		});
+	}
+	
+	function clearForm(){
+		['customerid','firstname','lastname'].forEach(function(id){
+			nodeCache[id].value = '';
+		});
+	}
+	
+	function deleteItem(id){
+		customers.remove(id, refreshTable);
+	}
+	
+	function updateItem(id){
+		var data = {
+			customerid: id,
+			firstname: document.getElementById('firstname_' + id).value.trim(),
+			lastname: document.getElementById('lastname_' + id).value.trim()
+		};
+		customers.put(data, refreshTable);
+	}
+	
+	// export some functions to the outside to
+	// make the onclick="" attributes work.
+	window.app = {
+		deleteItem: deleteItem,
+		updateItem: updateItem
+	};
+	
+	// go!
+	init();
+	
+
+})();
+    </script>
+
 </head>
 <body>
-<div id="right" style="left:0px; top:0px;">
+<div>
     <form>
-		<label for="ID">ID:</label>
-		<input type="text" id="ID" name="ID"
-		pattern="[0-9]{1-3}"
-		title="ID"
-		placeholder="001"><br><br>
-		</input>
+    <label for="ID">ID:</label>
+    <input type="text" id="customerid" name="ID"
+    pattern="[0-9]{1-3}"
+    title="ID"
+    placeholder="001"><br><br>
+    </input>
 
-		<label for="imie">Imie:</label>
-		<input type="text" id="imie" name="imie"
-		pattern="[a-zA-Z]{2,64}"
-		title="Imie"
-		placeholder="Jan"><br><br>
-		</input>
+    <label for="imie">Imie:</label>
+    <input type="text" id="firstname" name="imie"
+    pattern="[a-zA-Z]{2,64}"
+    title="Imie"
+    placeholder="Jan"><br><br>
+    </input>
 
-        <label for="nazwisko">Nazwisko:</label>
-		<input type="text" id="nazwisko" name="nazwisko"
-		pattern="[a-zA-Z]{2,64}"
-		title="Nazwisko"
-		placeholder="Kowalski"><br><br>
-		</input>
+    <label for="nazwisko">Nazwisko</label>
+    <input type="text" id="lastname" name="nazwisko"
+    pattern="[a-zA-Z]{2,64}"
+    title="Nazwisko"
+    placeholder="Kowalski"><br><br>
+    </input>
 
-        <label for="email">Adres Email:</label>
-		<input type="email" id="email" name="email"
-		pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
-		title="Adres Email"
-		placeholder="email@wp.pl"><br><br>
-		</input>
-
-        <label for="numer_telefonu">Numer telefonu:</label>
-		<input type="text" id="numer_telefonu" name="numer_telefonu"
-		pattern="[0-9]{3}(-)?[0-9]{3}(-)?[0-9]{3}"
-		title="Numer telefonu"
-		placeholder="777-888-999"><br><br>
-		</input>
-
-        <label for="kod_pocztowy">Kod pocztowy:</label>
-		<input type="text" id="kod_pocztowy" name="kod_pocztowy"
-		pattern="[0-9]{2}-[0-9]{3}"
-		title="Kod pocztowy"
-		placeholder="11-500"><br><br>
-		</input>
-        <button id="submit">Wyslij</button>
+    <button id="submit">Enter data</button>
     </form>
-
-    <table border=1>
-        <tr class="tabelka">
-            <th style="width:3em">ID</th>
-            <th style="width:8em">Imie</th>
-            <th style="width:8em">Nazwisko</th>
-            <th style="width:12em">Email</th>
-            <th style="width:12em">Numer telefonu</th>
-            <th style="width:8em">Kod pocztowy</th>
-        </tr>
 </div>
+<div class="vbox flex" id="results-container">
 </body>
 </html>

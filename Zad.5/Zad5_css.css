@@ -1,9 +1,9 @@
-input.form:valid{
+input:valid{
     border: 2px solid green;}
 
-input.form:invalid{
+input:invalid{
     border: 2px solid red;}
 
-input.form:placeholder-shown{
+input:placeholder-shown{
     border: 1px solid black;
 }

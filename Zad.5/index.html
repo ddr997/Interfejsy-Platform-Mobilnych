@@ -3,12 +3,20 @@
     <link rel="stylesheet" href="Zad5_css.css">
 </head>
 <body>
-    <form id="super_form">
-		<label for="www">Strona WWW:</label>
-		<input type="url" id="www" name="www"
-		pattern="(http[s]*://)([a-zA-Z0-9-]+\.[0-9a-zA-Z]+)[?/]"
-		title="Strona WWW"
-		placeholder="https://onet.pl"><br><br>
+<div id="right" style="left:0px; top:0px;">
+    <form>
+		<label for="imie">Imie:</label>
+		<input type="text" id="imie" name="imie"
+		pattern="[a-zA-Z]{2,64}"
+		title="Imie"
+		placeholder="Jan"><br><br>
+		</input>
+
+        <label for="nazwisko">Nazwisko:</label>
+		<input type="text" id="nazwisko" name="nazwisko"
+		pattern="[a-zA-Z]{2,64}"
+		title="Nazwisko"
+		placeholder="Kowalski"><br><br>
 		</input>
 
         <label for="email">Adres Email:</label>
@@ -31,6 +39,8 @@
 		title="Kod pocztowy"
 		placeholder="11-500"><br><br>
 		</input>
+        <button id="submit">Wyslij</button>
     </form>
+</div>
 </body>
 </html>

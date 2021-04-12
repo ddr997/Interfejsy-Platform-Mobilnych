@@ -1,10 +1,10 @@
 /*Zadanie 2 - CSS*/
-input:valid{
+input.form:valid{
     border: 2px solid green;}
 
-input:invalid{
+input.form:invalid{
     border: 2px solid red;}
 
-input:placeholder-shown{
+input.form:placeholder-shown{
     border: 1px solid black;
 }

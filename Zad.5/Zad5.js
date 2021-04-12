@@ -5,7 +5,7 @@ window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.ms
 
 if (!window.indexedDB) {
     window.alert("Brak wsparcia IndexedDB na twoja przegladarke.")
-}
+};
 
 const EmployeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", email:"example@wp.pl", postal:"22-550"}];
 var db;
@@ -27,7 +27,7 @@ request.onupgradeneeded = function (event) {
     for (var i in employeeData) {
         objectStore.add(employeeData[i]);
     }
-}
+};
 
 function loadTable() {
     var employees = "";
@@ -51,7 +51,7 @@ function loadTable() {
             $('thead').after(employees);
         }
     };
-}
+};
 
 function addEmployee() {
     var employeeID = $('#add_id').val();
@@ -79,7 +79,7 @@ function addEmployee() {
     request.onerror = function (event) {
         alert("error");
     }
-}
+};
 
 function deleteEmployee() {
     var employeeID = $('#delete_id').val();
@@ -91,7 +91,7 @@ function deleteEmployee() {
         loadTable();
         clearButtons();
     };
-}
+};
 
 function clearButtons() {
     $('#add_id').val("");
@@ -101,4 +101,4 @@ function clearButtons() {
     $('#add_email').val("");
     $('#add_postal').val("");
     $('delete_id').val("");
-}
+};

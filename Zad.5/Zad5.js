@@ -10,8 +10,9 @@ if (!window.indexedDB) {
 };
 
 const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", email:"example@wp.pl", postal:"22-550"}];
+
 var db;
-var request = window.indexedDB.open("newDatabase", 2);
+var request = window.indexedDB.open("newDatabase", 1);
 
 request.onerror = function (event) {
     console.log("error: ");
@@ -25,11 +26,14 @@ request.onsuccess = function (event) {
 
 request.onupgradeneeded = function (event) {
     var db = event.target.result;
-    var objectStore = db.createObjectStore("employee", {keyPath: "id"});
+    var objectStore = db.createObjectStore("employee", {
+        keyPath: "id"
+    });
+
     for (var i in employeeData) {
         objectStore.add(employeeData[i]);
     }
-};
+}
 
 function loadTable() {
     var employees = "";
@@ -48,12 +52,12 @@ function loadTable() {
                 '<td class="Email">' + cursor.value.email + '</td>' +
                 '<td class="kod_pocztowy">' + cursor.value.postal + '</td>' +
                 '</tr>');
-            cursor.continue();
+            cursor.continue(); // wait for next event
         } else {
-            $('thead').after(employees);
+            $('thead').after(employees); // no more events
         }
     };
-};
+}
 
 function addEmployee() {
     var employeeID = $('#add_id').val();
@@ -73,6 +77,7 @@ function addEmployee() {
             postal: postal
         });
 
+
     request.onsuccess = function (event) {
         loadTable();
         clearButtons();
@@ -81,7 +86,7 @@ function addEmployee() {
     request.onerror = function (event) {
         alert("error");
     }
-};
+}
 
 function deleteEmployee() {
     var employeeID = $('#delete_id').val();

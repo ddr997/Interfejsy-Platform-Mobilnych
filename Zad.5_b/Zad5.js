@@ -9,7 +9,8 @@ if (!window.indexedDB) {
     window.alert("Brak wsparcia IndexedDB na twoja przegladarke.")
 };
 
-const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAYXYZ", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"10-10-2010"}];
+const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAYXYZ", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"10-10-2010"},
+{id:"02", name:"Marian", surname:"Pazdzioch", age:"70", nd:"CAYXYZ", postal:"22-550", email:"cojest@wp.pl", www:"https://onet.pl", date:"2-02-1950"}];
 
 var db;
 var request = window.indexedDB.open("newDatabase", 1);
@@ -123,23 +124,40 @@ function clearButtons() {
 };
 
 function searchTable() {
-    var input, filter, found, table, tr, td, i, j;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td");
-        for (j = 0; j < td.length; j++) {
-            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                found = true;
+				
+    var employees = "";
+    $('.employee').remove();
+
+    var objectStore = db.transaction("employee").objectStore("employee");
+    objectStore.openCursor().onsuccess = function (event) {
+    var cursor = event.target.result;
+        if (cursor) {
+            if(cursor.key == $('#search_id').val() ||
+            cursor.value.name == $('#search_id').val() ||
+            cursor.value.surname == $('#search_id').val() ||
+            cursor.value.age == $('#search_id').val() ||
+            cursor.value.nd == $('#search_id').val() ||
+            cursor.value.postal == $('#search_id').val() ||
+            cursor.value.email == $('#search_id').val() ||
+            cursor.value.www == $('#search_id').val() ||
+            cursor.value.date == $('#search_id').val()){
+            employees = employees.concat(
+                    '<tr class="employee">' +
+                    '<td class="ID">' + cursor.key + '</td>' +
+                    '<td class="Imie">' + cursor.value.name + '</td>' +
+                    '<td class="Nazwisko">' + cursor.value.surname + '</td>' +
+                    '<td class="Wiek">' + cursor.value.age + '</td>' +
+                    '<td class="numer_dowodu">' + cursor.value.nd + '</td>' +
+                    '<td class="kod_pocztowy">' + cursor.value.postal + '</td>' +
+                    '<td class="Email">' + cursor.value.email + '</td>' +
+                    '<td class="WWW">' + cursor.value.www + '</td>' +
+                    '<td class="Data">' + cursor.value.date + '</td>' +
+                    '</tr>');
+                cursor.continue(); // wait for next event
             }
-        }
-        if (found) {
-            tr[i].style.display = "";
-            found = false;
-        } else {
-            tr[i].style.display = "none";
-        }
-    }
-}
+            else {
+                $('thead').after(employees); // no more events
+            }
+            
+        };
+    }}

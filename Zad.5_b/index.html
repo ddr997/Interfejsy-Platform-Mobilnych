@@ -16,6 +16,7 @@
             <th style="width:8em">Kod pocztowy</th>
             <th style="width:14em">Email</th>
             <th style="width:16em">WWW</th>
+            <th style="width:11em">Data</th>
         </thead>
     </table><br>
     <br>
@@ -27,6 +28,7 @@
     <label for="kod_pocztowy">Kod pocztowy: </label> <input id="add_postal" type="text" placeholder="11-500" pattern="[0-9]{2}-[0-9]{3}"><br><br>
     <label for="email">Adres Email: </label> <input id="add_email" type="text" placeholder="email@wp.pl" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"><br><br>
     <label for="www">Strona WWW:</label><input type="text" id="add_www" pattern="(http[s]*://)([a-zA-Z0-9-]+\.[0-9a-zA-Z]+)[?/]" placeholder="https://onet.pl"><br><br>
+    <label for="date">Data: </label> <input type="date" id="add_date"><br><br>
     <button onclick="addEmployee()">Wyślij</button><br><br>
     <button onclick="deleteEmployee()">Usuń z bazy</button>
     <input id="delete_id" type="text" placeholder="ID">

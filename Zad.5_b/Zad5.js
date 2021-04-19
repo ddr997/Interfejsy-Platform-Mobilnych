@@ -9,7 +9,7 @@ if (!window.indexedDB) {
     window.alert("Brak wsparcia IndexedDB na twoja przegladarke.")
 };
 
-const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAYXYZ", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl"}];
+const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAYXYZ", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"10-10-2010"}];
 
 var db;
 var request = window.indexedDB.open("newDatabase", 1);
@@ -53,6 +53,7 @@ function loadTable() {
                 '<td class="kod_pocztowy">' + cursor.value.postal + '</td>' +
                 '<td class="Email">' + cursor.value.email + '</td>' +
                 '<td class="WWW">' + cursor.value.www + '</td>' +
+                '<td class="Data">' + cursor.value.date + '</td>' +
                 '</tr>');
             cursor.continue(); // wait for next event
         } else {
@@ -70,6 +71,7 @@ function addEmployee() {
     var postal = $('#add_postal').val();
     var email = $('#add_email').val();
     var www = $('#add_www').val();
+    var date = $('#add_date').val();
     var request = db.transaction(["employee"], "readwrite")
         .objectStore("employee")
         .add({
@@ -80,7 +82,8 @@ function addEmployee() {
             nd: nd,
             postal: postal,
             email: email,
-            www: www
+            www: www,
+            date: date
         });
 
 
@@ -115,5 +118,6 @@ function clearButtons() {
     $('#add_postal').val("");
     $('#add_email').val("");
     $('#add_www').val("");
+    $("#add_date").val("");
     $('delete_id').val("");
 };

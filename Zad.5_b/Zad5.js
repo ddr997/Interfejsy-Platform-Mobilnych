@@ -49,8 +49,11 @@ function loadTable() {
                 '<td class="Imie">' + cursor.value.name + '</td>' +
                 '<td class="Nazwisko">' + cursor.value.surname + '</td>' +
                 '<td class="Wiek">' + cursor.value.age + '</td>' +
-                '<td class="Email">' + cursor.value.email + '</td>' +
+                '<td class="numer_dowodu">' + cursor.value.nd + '</td>' +
                 '<td class="kod_pocztowy">' + cursor.value.postal + '</td>' +
+                '<td class="Email">' + cursor.value.email + '</td>' +  
+                '<td class="strona_www">' + cursor.value.www + '</td>' +
+                '<td class="data">' + cursor.value.date + '</td>' +
                 '</tr>');
             cursor.continue(); // wait for next event
         } else {
@@ -64,8 +67,11 @@ function addEmployee() {
     var name = $('#add_name').val();
     var surname = $('#add_surname').val();
     var age = $('#add_age').val();
-    var email = $('#add_email').val();
+    var nd = $('add_ns').val();
     var postal = $('#add_postal').val();
+    var email = $('#add_email').val();
+    var www = $('add_www').val()
+    var date = $('add_date').val()
     var request = db.transaction(["employee"], "readwrite")
         .objectStore("employee")
         .add({
@@ -73,8 +79,11 @@ function addEmployee() {
             name: name,
             surname: surname,
             age: age,
+            numerdowodu: nd,
+            postal: postal,
             email: email,
-            postal: postal
+            www: www,
+            date: date
         });
 
 

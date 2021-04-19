@@ -53,11 +53,13 @@ function loadTable() {
                 '<td class="Email">' + cursor.value.email + '</td>' +
                 '<td class="WWW">' + cursor.value.www + '</td>' +
                 '<td class="Data">' + cursor.value.date + '</td>' +
+                '<td><button onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                 '</tr>');
-            cursor.continue(); // wait for next event
+                
         } else {
             $('thead').after(employees); // no more events
         }
+        cursor.continue();
     };
 }
 
@@ -96,8 +98,8 @@ function addEmployee() {
     }
 }
 
-function deleteEmployee() {
-    var employeeID = $('#delete_id').val();
+function deleteEmployee(x) {
+    var employeeID = x;
     var request = db.transaction(["employee"], "readwrite")
         .objectStore("employee")
         .delete(employeeID);
@@ -147,13 +149,13 @@ function searchtable() {
                     '<td class="Email">' + cursor.value.email + '</td>' +
                     '<td class="WWW">' + cursor.value.www + '</td>' +
                     '<td class="Data">' + cursor.value.date + '</td>' +
+                    '<td><button onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                     '</tr>');
                 } 
-                cursor.continue();
             }
             else {
                 $('thead').after(employees); // no more events
-            }
+            }         cursor.continue();
             
         };
     }

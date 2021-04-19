@@ -53,7 +53,7 @@ function loadTable() {
                 '<td class="Email">' + cursor.value.email + '</td>' +
                 '<td class="WWW">' + cursor.value.www + '</td>' +
                 '<td class="Data">' + cursor.value.date + '</td>' +
-                '<td><button onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
+                '<td><button style="width:20px;height:10px;background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                 '</tr>');
                 
         } else {
@@ -149,7 +149,7 @@ function searchtable() {
                     '<td class="Email">' + cursor.value.email + '</td>' +
                     '<td class="WWW">' + cursor.value.www + '</td>' +
                     '<td class="Data">' + cursor.value.date + '</td>' +
-                    '<td><button onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
+                    '<td><button style="width:20px;height:10px;background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                     '</tr>');
                 } 
             }

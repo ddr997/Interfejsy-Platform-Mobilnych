@@ -9,8 +9,7 @@ if (!window.indexedDB) {
     window.alert("Brak wsparcia IndexedDB na twoja przegladarke.")
 };
 
-const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAYXYZ", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"10-10-2010"},
-{id:"02", name:"Marian", surname:"Pazdzioch", age:"70", nd:"CAYXYZ", postal:"22-550", email:"cojest@wp.pl", www:"https://onet.pl", date:"2-02-1950"}];
+const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAY123456", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"10-10-2010"}];
 
 var db;
 var request = window.indexedDB.open("newDatabase", 1);
@@ -30,7 +29,6 @@ request.onupgradeneeded = function (event) {
     var objectStore = db.createObjectStore("employee", {
         keyPath: "id"
     });
-
     for (var i in employeeData) {
         objectStore.add(employeeData[i]);
     }
@@ -120,28 +118,25 @@ function clearButtons() {
     $('#add_email').val("");
     $('#add_www').val("");
     $("#add_date").val("");
-    $('delete_id').val("");
 };
 
-function searchTable() {
-				
+function searchtable() {
     var employees = "";
     $('.employee').remove();
-
     var objectStore = db.transaction("employee").objectStore("employee");
     objectStore.openCursor().onsuccess = function (event) {
     var cursor = event.target.result;
         if (cursor) {
-            if(cursor.key == $('#search_id').val() ||
-            cursor.value.name == $('#search_id').val() ||
-            cursor.value.surname == $('#search_id').val() ||
-            cursor.value.age == $('#search_id').val() ||
-            cursor.value.nd == $('#search_id').val() ||
-            cursor.value.postal == $('#search_id').val() ||
-            cursor.value.email == $('#search_id').val() ||
-            cursor.value.www == $('#search_id').val() ||
-            cursor.value.date == $('#search_id').val()){
-            employees = employees.concat(
+            if(cursor.value.id == $('#search').val() ||
+             cursor.value.name == $('#search').val() || 
+             cursor.value.surname == $('#search').val() || 
+             cursor.value.age == $('#search').val() || 
+             cursor.value.nd == $('#search').val() || 
+             cursor.value.postal == $('#search').val() || 
+             cursor.value.email == $('#search').val() ||
+             cursor.value.www == $('#search').val() ||
+             cursor.value.date == $('#search').val()){
+                employees = employees.concat(
                     '<tr class="employee">' +
                     '<td class="ID">' + cursor.key + '</td>' +
                     '<td class="Imie">' + cursor.value.name + '</td>' +
@@ -153,11 +148,12 @@ function searchTable() {
                     '<td class="WWW">' + cursor.value.www + '</td>' +
                     '<td class="Data">' + cursor.value.date + '</td>' +
                     '</tr>');
-                cursor.continue(); // wait for next event
+                } 
+                cursor.continue();
             }
             else {
                 $('thead').after(employees); // no more events
             }
             
         };
-    }}
+    }

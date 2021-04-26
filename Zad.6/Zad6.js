@@ -94,7 +94,22 @@ function addEmployee() {
     };
 
     request.onerror = function (event) {
-        alert("error");
+        var request = db.transaction(["employee"], "readwrite").objectStore("employee").delete(employeeID)
+        var request = db.transaction(["employee"], "readwrite")
+        .objectStore("employee")
+        .add({
+            id: employeeID,
+            name: name,
+            surname: surname,
+            age: age,
+            nd: nd,
+            postal: postal,
+            email: email,
+            www: www,
+            date: date
+        });
+        loadTable();
+        clearButtons();
     }
 }
 
@@ -129,15 +144,15 @@ function searchtable() {
     objectStore.openCursor().onsuccess = function (event) {
     var cursor = event.target.result;
         if (cursor) {
-            if(cursor.value.id.includes($('#search').val() || $('#search2').val()) ||
-             cursor.value.name.includes($('#search').val() || $('#search2').val()) || 
-             cursor.value.surname.includes($('#search').val() || $('#search2').val()) || 
-             cursor.value.age.includes($('#search').val() || $('#search2').val()) || 
-             cursor.value.nd.includes($('#search').val() || $('#search2').val()) || 
-             cursor.value.postal.includes($('#search').val() || $('#search2').val()) || 
-             cursor.value.email.includes($('#search').val() || $('#search2').val()) ||
-             cursor.value.www.includes($('#search').val() || $('#search2').val()) ||
-             cursor.value.date.includes($('#search').val() || $('#search2').val())){
+            if((cursor.value.id.toString() +
+                cursor.value.name.toLowerCase() +
+                cursor.value.surname.toLowerCase() +
+                cursor.value.age.toString() + 
+                cursor.value.nd.toLowerCase() + 
+                cursor.value.postal.toString() +
+                cursor.value.email.toLowerCase() +
+                cursor.value.www.toLowerCase() +
+                cursor.value.date.toLowerCase()).includes($('#search').val().toLowerCase().replace(/ /g,''))){
                 employees = employees.concat(
                     '<tr class="employee">' +
                     '<td class="ID">' + cursor.key + '</td>' +

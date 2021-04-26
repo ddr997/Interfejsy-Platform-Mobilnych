@@ -9,7 +9,7 @@ if (!window.indexedDB) {
     window.alert("Brak wsparcia IndexedDB na twoja przegladarke.")
 };
 
-const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAY123456", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"10-10-2010"}];
+const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAY123456", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"Thu Apr 29 2021"}];
 
 var db;
 var request = window.indexedDB.open("newDatabase", 1);
@@ -40,8 +40,8 @@ function loadTable() {
 
     var objectStore = db.transaction("employee").objectStore("employee");
     objectStore.openCursor().onsuccess = function (event) {
-        var cursor = event.target.result;
-        if (cursor) {
+    var cursor = event.target.result;
+    if (cursor) {
             employees = employees.concat(
                 '<tr class="employee">' +
                 '<td class="ID">' + cursor.key + '</td>' +
@@ -56,12 +56,12 @@ function loadTable() {
                 '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                 '</tr>');
                 
-        } else {
+                } else {
             $('thead').after(employees); // no more events
-        }
+                       }
         cursor.continue();
-    };
-}
+                                                            };
+                    }
 
 function addEmployee() {
     var employeeID = $('#add_id').val();
@@ -129,15 +129,15 @@ function searchtable() {
     objectStore.openCursor().onsuccess = function (event) {
     var cursor = event.target.result;
         if (cursor) {
-            if(cursor.value.id == $('#search').val() ||
-             cursor.value.name == $('#search').val() || 
-             cursor.value.surname == $('#search').val() || 
-             cursor.value.age == $('#search').val() || 
-             cursor.value.nd == $('#search').val() || 
-             cursor.value.postal == $('#search').val() || 
-             cursor.value.email == $('#search').val() ||
-             cursor.value.www == $('#search').val() ||
-             cursor.value.date == $('#search').val()){
+            if(cursor.value.id.includes($('#search').val() || $('#search2').val()) ||
+             cursor.value.name.includes($('#search').val() || $('#search2').val()) || 
+             cursor.value.surname.includes($('#search').val() || $('#search2').val()) || 
+             cursor.value.age.includes($('#search').val() || $('#search2').val()) || 
+             cursor.value.nd.includes($('#search').val() || $('#search2').val()) || 
+             cursor.value.postal.includes($('#search').val() || $('#search2').val()) || 
+             cursor.value.email.includes($('#search').val() || $('#search2').val()) ||
+             cursor.value.www.includes($('#search').val() || $('#search2').val()) ||
+             cursor.value.date.includes($('#search').val() || $('#search2').val())){
                 employees = employees.concat(
                     '<tr class="employee">' +
                     '<td class="ID">' + cursor.key + '</td>' +
@@ -151,14 +151,14 @@ function searchtable() {
                     '<td class="Data">' + cursor.value.date + '</td>' +
                     '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                     '</tr>');
-                } 
-            }
-            else {
-                $('thead').after(employees); // no more events
-            }         cursor.continue();
-            
-        };
-    }
+                                                    } 
+                    }
+         else{
+            $('thead').after(employees); // no more events
+             } 
+                cursor.continue();       
+                                                            };
+                    }
 
 function randomDate(start, end) {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));

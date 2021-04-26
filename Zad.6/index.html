@@ -8,8 +8,6 @@
     <input type="text" id="search" placeholder="Wyszukaj tekst w tabeli"></input>
     <button onclick="searchtable()">Szukaj</button>
     <br><br>
-    <button onclick="generateData()">GENERUJ LOSOWE DANE</button>
-    <br><br>
     <table border=1 id="tabela">
         <thead>
             <th style="width:2em">ID</th>
@@ -23,7 +21,6 @@
             <th style="width:11em">Data</th>
         </thead>
     </table><br>
-    <br>
     <label for="ID">ID: </label> <input id="add_id" type="text" placeholder="01" pattern="[0-9]{1-6}"><br><br>
     <label for="imie">Imie: </label> <input id="add_name" type="text" placeholder="Jan" pattern="[a-zA-Z]{2,64}"><br><br>
     <label for="nazwisko">Nazwisko: </label> <input id="add_surname" type="text" placeholder="Kowalski" pattern="[a-zA-Z]{2,64}"><br><br>
@@ -33,6 +30,6 @@
     <label for="email">Adres Email: </label> <input id="add_email" type="text" placeholder="email@wp.pl" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"><br><br>
     <label for="www">Strona WWW:</label><input type="text" id="add_www" pattern="https?://.*" placeholder="https://onet.pl"><br><br>
     <label for="date">Data: </label> <input type="text" id="add_date" placeholder="Wed Apr 28 2021"><br><br>
-    <button onclick="addEmployee()">Wyślij</button><br><br>
+    <button onclick="addEmployee()">Wyślij</button> <button onclick="generateData()">GENERUJ LOSOWE DANE</button>
 </body>
 </html>

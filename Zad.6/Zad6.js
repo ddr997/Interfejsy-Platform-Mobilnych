@@ -160,19 +160,33 @@ function searchtable() {
         };
     }
 
+function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+                                }
+
+function randomText(textArray) {
+    var randomIndex = Math.floor(Math.random() * textArray.length); 
+    var randomElement = textArray[randomIndex];
+    return randomElement;
+                                }
+
+function getRandomString(length) {
+    var randomChars = 'abcdefghijklmnopqrstuvwxyz';
+    var result = '';
+    for ( var i = 0; i < length; i++ ) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    return result;
+}
+
 function generateData(){
-    var id_g = Math.floor(Math.random() * 101).toString();
-    var imie_g = randomText(["Abandoned","Able","Absolute","Adorable","Adventurous","Academic","Acceptable","Acclaimed","Accomplished","Accurate"]);
-    var nazwisko_g = randomtext(["People","History","Way","Art","World","Information","Map","Family","Government","Health"]);
-    var age_g = Math.floor(Math.random() * 101);
-    var nd_g = 'CAY' + Math.floor((Math.random() * 999999) + 100000);
-    var postal_g = Math.floor((Math.random() * 99) + 10); + '-' + Math.floor((Math.ra   ndom() * 999) + 100);
-    var email = Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5) + '@gmail.com';         
-    
-    const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAY123456", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"10-10-2010"}];
-    var db = event.target.result;
-    var objectStore = db.createObjectStore("employee", {keyPath: "id"});
-    for (var i in employeeData) {
-        objectStore.add(employeeData[i]);
-                                    }
-                             }
+    document.getElementById("add_id").value = Math.floor(Math.random() * 101).toString();
+    document.getElementById("add_name").value = randomText(["Abandoned","Able","Absolute","Adorable","Adventurous","Academic","Acceptable","Acclaimed","Accomplished","Accurate"]);
+    document.getElementById("add_surname").value = randomText(["People","History","Way","Art","World","Information","Map","Family","Government","Health"]);
+    document.getElementById("add_age").value = Math.floor(Math.random() * 101).toString();
+    document.getElementById("add_nd").value = 'CAY' + Math.floor((Math.random() * 999999) + 100000).toString();
+    document.getElementById("add_postal").value = Math.floor((Math.random() * 99) + 10).toString(); + '-' + Math.floor((Math.random() * 999) + 100).toString();
+    document.getElementById("add_email").value = Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5) + '@gmail.com';         
+    document.getElementById("add_www").value = 'https://' + getRandomString(Math.floor((Math.random() * 12) + 5)) + '.com';
+    document.getElementById("add_date").value = randomDate(new Date(2021, 4, 26), new Date());     
+                                                                 }

@@ -184,9 +184,9 @@ function generateData(){
     document.getElementById("add_name").value = randomText(["Abandoned","Able","Absolute","Adorable","Adventurous","Academic","Acceptable","Acclaimed","Accomplished","Accurate"]);
     document.getElementById("add_surname").value = randomText(["People","History","Way","Art","World","Information","Map","Family","Government","Health"]);
     document.getElementById("add_age").value = Math.floor(Math.random() * 101).toString();
-    document.getElementById("add_nd").value = 'CAY' + Math.floor((Math.random() * 999999) + 100000).toString();
-    document.getElementById("add_postal").value = Math.floor((Math.random() * 99) + 10).toString(); + '-' + Math.floor((Math.random() * 999) + 100).toString();
+    document.getElementById("add_nd").value = 'CAY' + Math.floor((Math.random() * 899999) + 100000).toString();
+    document.getElementById("add_postal").value = Math.floor((Math.random() * 89) + 10).toString() + '-' + Math.floor((Math.random() * 899) + 100).toString();
     document.getElementById("add_email").value = Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5) + '@gmail.com';         
     document.getElementById("add_www").value = 'https://' + getRandomString(Math.floor((Math.random() * 12) + 5)) + '.com';
-    document.getElementById("add_date").value = randomDate(new Date(2021, 4, 26), new Date());     
-                                                                 }
+    document.getElementById("add_date").value = randomDate(new Date(2021, 4, 4), new Date()).toString().substring(0, 16);     
+                        }

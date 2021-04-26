@@ -190,3 +190,7 @@ function generateData(){
     document.getElementById("add_www").value = 'https://' + getRandomString(Math.floor((Math.random() * 12) + 5)) + '.com';
     document.getElementById("add_date").value = randomDate(new Date(2021, 4, 4), new Date()).toString().substring(0, 16);     
                         }
+
+function refresh(){
+loadTable();
+                  }

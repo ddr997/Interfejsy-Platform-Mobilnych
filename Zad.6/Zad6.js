@@ -182,7 +182,7 @@ function getRandomString(length) {
 function generateData(){
     document.getElementById("add_id").value = Math.floor(Math.random() * 101).toString();
     document.getElementById("add_name").value = randomText(["Jan","Tomasz","Maciej","Michał","Andrzej","Adam","Robert","Jakub","Paweł","Dominik"]);
-    document.getElementById("add_surname").value = randomText(["Ryba","Lok","Papa","Corleone","Stalone","Torino","Polanski","Psikuta","Nowak","Kowalski"]);
+    document.getElementById("add_surname").value = randomText(["Ryba","Lok","Papa","Corleone","Stalone","Torino","Polanski","Psikut","Nowak","Kowalski"]);
     document.getElementById("add_age").value = Math.floor(Math.random() * 101).toString();
     document.getElementById("add_nd").value = 'CAY' + Math.floor((Math.random() * 899999) + 100000).toString();
     document.getElementById("add_postal").value = Math.floor((Math.random() * 89) + 10).toString() + '-' + Math.floor((Math.random() * 899) + 100).toString();

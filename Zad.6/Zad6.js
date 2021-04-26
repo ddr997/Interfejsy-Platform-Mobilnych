@@ -160,19 +160,19 @@ function searchtable() {
         };
     }
 
-function generateRandom(){
-    var id_g = Math.floor(Math.random() * 101);
-    var imie_g = ["Abandoned","Able","Absolute","Adorable","Adventurous","Academic","Acceptable","Acclaimed","Accomplished","Accurate"];
-    var nazwisko_g = ["People","History","Way","Art","World","Information","Map","Family","Government","Health"];
+function generateData(){
+    var id_g = Math.floor(Math.random() * 101).toString();
+    var imie_g = randomText(["Abandoned","Able","Absolute","Adorable","Adventurous","Academic","Acceptable","Acclaimed","Accomplished","Accurate"]);
+    var nazwisko_g = randomtext(["People","History","Way","Art","World","Information","Map","Family","Government","Health"]);
     var age_g = Math.floor(Math.random() * 101);
-    var nd_g = ["CAY123456","CAY536723","CAY683442","CAY316754","CAY212567","CAY785389","CAY800495","CAY324758","CAY124111","CAY742976"];
-    var postal_g = Math.floor((Math.random() * 99) + 10); + '-' + Math.floor((Math.random() * 999) + 100);
-    var email = ; 
+    var nd_g = 'CAY' + Math.floor((Math.random() * 999999) + 100000);
+    var postal_g = Math.floor((Math.random() * 99) + 10); + '-' + Math.floor((Math.ra   ndom() * 999) + 100);
+    var email = Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5) + '@gmail.com';         
     
     const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAY123456", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"10-10-2010"}];
-
+    var db = event.target.result;
     var objectStore = db.createObjectStore("employee", {keyPath: "id"});
     for (var i in employeeData) {
         objectStore.add(employeeData[i]);
-                                }
-                         }
+                                    }
+                             }

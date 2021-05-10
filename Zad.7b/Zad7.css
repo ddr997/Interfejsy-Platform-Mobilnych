@@ -7,4 +7,4 @@ input:invalid{
 input:placeholder-shown{
     border: 1px solid black;
 }
-#uploaded_photo{background: green; opacity:0.9; position:absolute;};
+#uploaded_photo{background: green; opacity:0.9; position:absolute; width: 100%; height: 100%;};

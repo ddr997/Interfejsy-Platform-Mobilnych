@@ -6,6 +6,7 @@ onmessage = function (e){
         while (i < str.length){
             temp = 0;
             var l = str.charAt(i);
+            if(l.toUpperCase() != l.toUpperCase()){
             if(l == l.toUpperCase()){
                 temp = str.charCodeAt(i) -64;
             }else{
@@ -13,7 +14,7 @@ onmessage = function (e){
             }   
             i += 1;
             sum += temp;
-        }
+        }}
         var r,g,b;
         r = sum % 255;
         g = 255 - (r);

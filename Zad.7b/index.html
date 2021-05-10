@@ -39,7 +39,7 @@
     <input type="url" id="imglink" placeholder="Insert image URL here" value="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"/><input type="button" value="Show Image" id="btn1"/>
     </form>
     <button onclick="trig_Worker_2()">Webworker_2 (wylicz RGB)</button><input type="text" placeholder="RGB value" id="rgb_val"><br></br>
-    <div id="photo" style="width: 200px; height:300px;"></div>
+    <div id="photo" style="width: 300px; height:300px;"></div>
       <script>
       document.getElementById('btn1').addEventListener('click', function(){
         document.getElementById('photo').innerHTML = '<img src="'+ document.getElementById('imglink').value +'" alt="Image" id="up_photo" />';

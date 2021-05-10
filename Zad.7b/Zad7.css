@@ -7,7 +7,7 @@ input:invalid{
 input:placeholder-shown{
     border: 1px solid black;
 }
-#up_photo:after{content: "";
+#photo:after{content: "";
     position: absolute;
     top: 0;
     left: 0;

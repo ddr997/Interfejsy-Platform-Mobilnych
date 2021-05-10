@@ -284,13 +284,5 @@ document.getElementById('btn1').addEventListener('click', function(){
 
   function MessageFromWorker_2(e){
     data_fromWorker = JSON.parse(e.data_2);
-    document.getElementById("add_id").value = data_fromWorker['id'];
-    document.getElementById("add_name").value = data_fromWorker['name'];
-    document.getElementById("add_surname").value = data_fromWorker['surname'];
-    document.getElementById("add_age").value = data_fromWorker['age'];
-    document.getElementById("add_nd").value = data_fromWorker['nd'];
-    document.getElementById("add_postal").value = data_fromWorker['postal'];
-    document.getElementById("add_email").value = data_fromWorker['email'];       
-    document.getElementById("add_www").value = data_fromWorker['www'];
-    document.getElementById("add_date").value = data_fromWorker['date'];
+    document.getElementById("rgb_val").value = data_fromWorker;
 }

@@ -7,4 +7,11 @@ input:invalid{
 input:placeholder-shown{
     border: 1px solid black;
 }
-#uploaded_photo:after{filter:grayscale(100%); position:absolute;};
+#up_photo:before{content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(120deg, #eaee44, #33d0ff);
+    opacity: .7;};

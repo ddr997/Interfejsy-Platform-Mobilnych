@@ -6,7 +6,7 @@ onmessage = function (e){
         while (i < str.length){
             temp = 0;
             var l = str.charAt(i);
-            if(l.toUpperCase() != l.toLowerCase() && new style && l == l.toUpperCase()){
+            if(l.toUpperCase() != l.toLowerCase() && l == l.toUpperCase()){
                 temp = str.charCodeAt(i) -64;
             }else if(l.toUpperCase() != l.toLowerCase()){
                 temp = str.charCodeAt(i) -96;

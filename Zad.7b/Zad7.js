@@ -251,6 +251,7 @@ loadTable();
                   }
 
 //////////////////////////////////////////////////////Zad7b
+
   function trig_Worker_2(){
     const worker = new Worker('./worker_2.js');
     var temp_id = document.getElementById("add_id").value;

@@ -11,7 +11,7 @@ onmessage = function (e){
                 temp = str.charCodeAt(i) -64;
             }else{
                 temp = str.charCodeAt(i) -96;
-            }}
+            }}   
             i += 1;
             sum += temp;
         }

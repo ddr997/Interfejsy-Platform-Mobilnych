@@ -4,6 +4,7 @@ onmessage = function (e){
         var i = 0;
         var sum = 0;
         while (i < str.length){
+            temp = 0;
             var l = str.charAt(i);
             if(l == l.toUpperCase()){
                 temp = str.charCodeAt(i) -64;

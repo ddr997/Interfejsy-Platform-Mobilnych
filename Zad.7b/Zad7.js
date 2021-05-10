@@ -249,3 +249,13 @@ function MessageFromWorker(e){
 function refresh(){
 loadTable();
                   }
+
+function getUrl() {
+    var url = document.getElementById("url").value;
+    if (url) { // Do string and URL validation here and also for image type
+        return url;
+    } else {
+        return getUrl();
+    }
+}
+image.src = getUrl();

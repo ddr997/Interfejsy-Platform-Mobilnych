@@ -251,10 +251,6 @@ loadTable();
                   }
 
 //////////////////////////////////////////////////////Zad7b
-document.getElementById('btn1').addEventListener('click', function(){
-    document.getElementById('photo').innerHTML = '<img src="'+ document.getElementById('imglink').value +'" alt="Image" />';
-  });
-
   function trig_Worker_2(){
     const worker = new Worker('./worker_2.js');
     var temp_id = document.getElementById("add_id").value;
@@ -284,5 +280,6 @@ document.getElementById('btn1').addEventListener('click', function(){
   function MessageFromWorker_2(e){
     data_fromWorker = e.data;
     document.getElementById("rgb_val").value = data_fromWorker;
-    document.getElementById('photo').style.backgroundColor =  data_fromWorker;
+    document.getElementById('layer').style.backgroundColor =  data_fromWorker;
+    document.getElementById('layer').style.opacity = 0.5;
 }   

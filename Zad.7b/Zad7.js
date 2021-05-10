@@ -257,7 +257,6 @@ document.getElementById('btn1').addEventListener('click', function(){
 
   function trig_Worker_2(){
     const worker = new Worker('./worker_2.js');
-    console.log("clicked!");
     var temp_id = document.getElementById("add_id").value;
     var temp_name = document.getElementById("add_name").value;
     var temp_surname = document.getElementById("add_surname").value;
@@ -278,11 +277,11 @@ document.getElementById('btn1').addEventListener('click', function(){
         temp_www+
         +temp_date;
       
-    worker.postMessage(JSON.stringify(data_toWorker));
+    worker.postMessage(data_toWorker);
     worker.addEventListener('message',MessageFromWorker_2);
   }
 
   function MessageFromWorker_2(e){
-    data_fromWorker = JSON.parse(e.data_2);
+    data_fromWorker = e.data_2;
     document.getElementById("rgb_val").value = data_fromWorker;
-}
+}   

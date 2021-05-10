@@ -19,7 +19,7 @@ onmessage = function (e){
         b = (0.5*r>125)?99:199;
         return "rgb("+r+","+g+","+b+")";
     }
-    var data_2 = JSON.parse(e.data);
+    var data_2 = e.data;
     var data_2= CountNumer(data_2);
-    self.postMessage(JSON.stringify(data_2));
+    self.postMessage(data_2);
 }

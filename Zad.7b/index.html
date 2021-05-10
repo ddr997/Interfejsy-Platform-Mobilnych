@@ -32,7 +32,17 @@
     <label for="date">Data: </label> <input type="text" id="add_date" placeholder="Wed Apr 28 2021"><br><br>
     <button onclick="addEmployee()">Wyślij</button> <button onclick="generateData()">GENERUJ LOSOWE DANE</button>
     <button onclick="trig_Worker()">Webworker</button><br></br>
-    <label for="date">Link do zdjęcia:</label> <input type="url" id="url" placeholder="http://krzak.pl"><button onclick="getUrl()">Wyślij</button><br><br>
-    <img src="https://example.com/puppy.gif" width="304" height="228" id="image">
+    <label for="date">Link do zdjęcia:</label>
+
+
+    <form action="#" method="post">
+    <input type="url" id="imglink" placeholder="Insert image URL here" value="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"/><input type="button" value="Show Image" id="btn1"/>
+    </form>
+    <div id="photo"></div>
+      <script>
+      document.getElementById('btn1').addEventListener('click', function(){
+        document.getElementById('photo').innerHTML = '<img src="'+ document.getElementById('imglink').value +'" alt="Image" />';
+      });
+    </script>
 </body>
 </html>

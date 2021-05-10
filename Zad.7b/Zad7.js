@@ -250,12 +250,7 @@ function refresh(){
 loadTable();
                   }
 
-function getUrl() {
-    var url = document.getElementById("url").value;
-    if (url) { // Do string and URL validation here and also for image type
-        return url;
-    } else {
-        return getUrl();
-    }
-}
-image.src = getUrl();
+//////////////////////////////////////////////////////Zad7b
+document.getElementById('btn1').addEventListener('click', function(){
+    document.getElementById('photo').innerHTML = '<img src="'+ document.getElementById('imglink').value +'" alt="Image" />';
+  });

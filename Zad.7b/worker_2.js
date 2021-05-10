@@ -6,13 +6,15 @@ onmessage = function (e){
         while (i < str.length){
             temp = 0;
             var l = str.charAt(i);
-            if((l.toUpperCase() != l.toLowerCase()) && l == l.toUpperCase()){
+            if(l.toUpperCase() != l.toLowerCase()){
+            if(l == l.toUpperCase()){
                 temp = str.charCodeAt(i) -64;
-            }else if(l.toUpperCase() != l.toLowerCase()){
+            }else{
                 temp = str.charCodeAt(i) -96;
-            }else{continue;}
+            }}
             i += 1;
             sum += temp;
+        }
         }
         var r,g,b;
         r = sum % 255;

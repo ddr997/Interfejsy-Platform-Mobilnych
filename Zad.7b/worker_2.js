@@ -19,7 +19,7 @@ onmessage = function (e){
         b = (0.5*r>125)?99:199;
         return "rgb("+r+","+g+","+b+")";
     }
-    var data_2 = e.data;
-    var data_2= CountNumer(data_2);
+    var d = e.data;
+    var data_2= CountNumer(d);
     self.postMessage(data_2);
 }

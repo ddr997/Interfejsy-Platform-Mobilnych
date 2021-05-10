@@ -36,13 +36,13 @@
 
 
     <form action="#" method="post">
-    <input type="url" id="imglink" placeholder="Insert image URL here" value="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"/><input type="button" value="Show Image" id="btn1"/>
+    <input type="url" id="imglink" placeholder="Insert image URL here" value="https://i.pinimg.com/736x/65/e9/4d/65e94d9235842f1c301d9e90c150511d.jpg"/><input type="button" value="Show Image" id="btn1"/>
     </form>
     <button onclick="trig_Worker_2()">Webworker_7b (wylicz RGB i wstaw filtr)</button><input type="text" placeholder="RGB value" id="rgb_val"><br></br>
     <div id="layer" style="width: 300px; height:300px; position:absolute;"></div><div id="photo" style="width: 300px; height:300px;"></div>
       <script>
       document.getElementById('btn1').addEventListener('click', function(){
-      document.getElementById('photo').innerHTML = '<img src="'+ document.getElementById('imglink').value +'" alt="Image" id="up_photo" style="max-width:100%; max-height:100%;"/>';
+      document.getElementById('photo').innerHTML = '<img src="'+ document.getElementById('imglink').value +'" alt="Image" id="up_photo" style="max-width:100%; max-height:100%; display: block;"/>';
       document.getElementById('layer').style.backgroundColor = 'transparent';
       });
     </script>

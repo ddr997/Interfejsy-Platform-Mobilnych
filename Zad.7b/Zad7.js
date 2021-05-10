@@ -284,5 +284,4 @@ document.getElementById('btn1').addEventListener('click', function(){
   function MessageFromWorker_2(e){
     data_fromWorker = e.data;
     document.getElementById("rgb_val").value = data_fromWorker;
-    document.getElementById("uplodaded_photo").style.color = "blue";
 }   

@@ -254,3 +254,43 @@ loadTable();
 document.getElementById('btn1').addEventListener('click', function(){
     document.getElementById('photo').innerHTML = '<img src="'+ document.getElementById('imglink').value +'" alt="Image" />';
   });
+
+  function trig_Worker_2(){
+    const worker = new Worker('./worker_2.js');
+    console.log("clicked!");
+    var temp_id = document.getElementById("add_id").value;
+    var temp_name = document.getElementById("add_name").value;
+    var temp_surname = document.getElementById("add_surname").value;
+    var temp_age = document.getElementById("add_age").value;
+    var temp_nd = document.getElementById("add_nd").value;
+    var temp_postal = document.getElementById("add_postal").value;
+    var temp_email = document.getElementById("add_email").value;         
+    var temp_www = document.getElementById("add_www").value;
+    var temp_date = document.getElementById("add_date").value; 
+    var data_toWorker = 
+        temp_id+
+        temp_name+
+        temp_surname+
+        temp_age+
+        temp_nd+
+        temp_postal+
+        temp_email+
+        temp_www+
+        +temp_date;
+      
+    worker.postMessage(JSON.stringify(data_toWorker));
+    worker.addEventListener('message',MessageFromWorker_2);
+  }
+
+  function MessageFromWorker_2(e){
+    data_fromWorker = JSON.parse(e.data_2);
+    document.getElementById("add_id").value = data_fromWorker['id'];
+    document.getElementById("add_name").value = data_fromWorker['name'];
+    document.getElementById("add_surname").value = data_fromWorker['surname'];
+    document.getElementById("add_age").value = data_fromWorker['age'];
+    document.getElementById("add_nd").value = data_fromWorker['nd'];
+    document.getElementById("add_postal").value = data_fromWorker['postal'];
+    document.getElementById("add_email").value = data_fromWorker['email'];       
+    document.getElementById("add_www").value = data_fromWorker['www'];
+    document.getElementById("add_date").value = data_fromWorker['date'];
+}

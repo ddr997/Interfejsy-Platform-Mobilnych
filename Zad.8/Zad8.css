@@ -7,3 +7,56 @@ input:invalid{
 input:placeholder-shown{
     border: 1px solid black;
 }
+
+input[type=button], input[type=submit], input[type=reset], button{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  thead, tfoot {
+    background-color: #2F4858;
+    color: #fff;
+}
+
+tbody {
+    background-color: #e6f7ff;
+}
+
+caption {
+    padding: 10px;
+    caption-side: bottom;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(200, 200, 200);
+    letter-spacing: 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .9rem;
+}
+
+td,
+th {
+    border: 1px solid rgb(190, 190, 190);
+    padding: 5px 10px;
+}
+
+td {
+    text-align: center;
+}
+
+#formularz input[type=text]{
+    float: right;
+}
+#formularz{
+    margin-left: 1px; 
+    width:18%;
+}
+i{
+    font-size: 12px;
+}

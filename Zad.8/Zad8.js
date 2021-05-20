@@ -53,7 +53,7 @@ function loadTable() {
                 '<td class="Email">' + cursor.value.email + '</td>' +
                 '<td class="WWW">' + cursor.value.www + '</td>' +
                 '<td class="Data">' + cursor.value.date + '</td>' +
-                '<td class="Image"> <img src="' + cursor.value.picture + '" width="100" height="100"> </td>' +
+                '<td class="Image"><img src="' + cursor.value.img + '" width="100" height="100"></td>' +
                 '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                 '</tr>');
                 
@@ -167,7 +167,7 @@ function searchtable() {
                     '<td class="Email">' + cursor.value.email + '</td>' +
                     '<td class="WWW">' + cursor.value.www + '</td>' +
                     '<td class="Data">' + cursor.value.date + '</td>' +
-                    '<td class="Image"> <img src="' + cursor.value.picture + '" width="100" height="100"> </td>' +
+                    '<td class="Image"> <img src="' + cursor.value.img + '" width="100" height="100"> </td>' +
                     '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                     '</tr>');
                                                     } 
@@ -256,7 +256,7 @@ function refresh(){
 
 //////////////////////////////////////////////////////Zad7b
 
-  function trig_Worker_2(){
+function trig_Worker_2(){
     const worker = new Worker('./worker_2.js');
     var temp_id = document.getElementById("add_id").value;
     var temp_name = document.getElementById("add_name").value;
@@ -277,22 +277,30 @@ function refresh(){
         temp_email+
         temp_www+
         +temp_date;
-      
+        
     worker.postMessage(data_toWorker);
     worker.addEventListener('message',MessageFromWorker_2);
-  }
+}
 
-  function MessageFromWorker_2(e){
+function MessageFromWorker_2(e){
     data_fromWorker = e.data;
     document.getElementById("rgb_val").value = data_fromWorker;
     document.getElementById('layer').style.backgroundColor =  data_fromWorker;
-    document.getElementById('layer').style.opacity = 0.5;    var canvas = document.querySelector('canvas');
 }
 
 function drawCanvas(){
     var c = document.getElementById('myCanvas');
     var ctx = c.getContext("2d");
-    var img = new Image();
+    var img = new Image;
+    img.setAttribute('crossOrigin', 'anonymous');
+    img.onload=function() {
+        ctx.drawImage(img,0,0, myCanvas.width, myCanvas.height);
+        ctx.fillStyle = document.getElementById('rgb_val').value;
+        ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
+    }
     img.src = document.getElementById('add_image').value;
-    ctx.drawImage(img, myCanvas.width, myCanvas.height);
+}
+
+function resetFilter(){
+    document.getElementById('rgb_val').value = "rgba(0,0,0,0)"
 }

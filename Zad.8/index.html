@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="Zad8.css">
 </head>
 <body style="margin: 20 px auto;">
-    <input type="text" id="search" placeholder="Wyszukaj tekst w tabeli"></input>
+    <input type="text" id="search" placeholder="Wyszukaj tekst w tabeli" style="margin-left: 10px;"></input>
     <button onclick="searchtable()">Szukaj</button><button onclick="refresh()">Odśwież</button>
     <br><br>
     <table border=1 id="tabela">
@@ -21,7 +21,9 @@
             <th style="width:11em">Data</th>
             <th>Zdjecie</th>
         </thead>
-    </table><br>
+    </table>
+    <div id="formularz">
+    <h2>Formularz:</h2>
     <label for="ID">ID:</label> <input id="add_id" type="text" placeholder="01" pattern="[0-9]{1-6}"><i> (to samo ID edytuje klienta)</i></br></br>
     <label for="imie">Imie: </label> <input id="add_name" type="text" placeholder="Jan" pattern="[a-zA-Z]{2,64}"><br><br>
     <label for="nazwisko">Nazwisko: </label> <input id="add_surname" type="text" placeholder="Kowalski" pattern="[a-zA-Z]{2,64}"><br><br>
@@ -31,28 +33,18 @@
     <label for="email">Adres Email: </label> <input id="add_email" type="text" placeholder="email@wp.pl" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"><br><br>
     <label for="www">Strona WWW:</label><input type="text" id="add_www" pattern="https?://.*" placeholder="https://onet.pl"><br><br>
     <label for="date">Data: </label> <input type="text" id="add_date" placeholder="Wed Apr 28 2021"><br><br>
-    <!-- <label for="img">Link do zdjęcia (wstawia do bazy danych): </label><input type="url" id="add_image" placeholder="img URL" value="https://i.pinimg.com/736x/65/e9/4d/65e94d9235842f1c301d9e90c150511d.jpg"/><br><br> -->
+    </div>
+    
     <button onclick="addEmployee()">Wyślij</button> 
     <button onclick="generateData()">GENERUJ LOSOWE DANE</button>
     <button onclick="trig_Worker()">Webworker_7 (zmiana wielk. liter)</button><br></br>
 
-    <h2> Webworker filtr zdjęcia:</h2>
-    <input type="url" id="add_image" placeholder="img URL" value="https://i.pinimg.com/736x/65/e9/4d/65e94d9235842f1c301d9e90c150511d.jpg"/>
-    <input type="button" value="Wyświetl/odswież obraz" id="btn1"/><br><br>
-    <button onclick="trig_Worker_2()">Webworker_7b (wylicz RGB i wstaw filtr)</button><input type="text" placeholder="RGB value" id="rgb_val"><br></br>
-    <div id="layer" style="width: 300px; height:300px; position:absolute;"></div><canvas id="myCanvas" width="300" height="300"></canvas>
-
-    <script>
-        document.getElementById('btn1').addEventListener('click', function(){
-            var c = document.getElementById('myCanvas');
-            var ctx = c.getContext("2d");
-            var img = new Image();
-            img.crossOrigin = 'Anonymous';
-            img.onload=function() {
-                ctx.drawImage(img,0,0, myCanvas.width, myCanvas.height);
-            }
-            img.src = document.getElementById('add_image').value;
-    });
-    </script>
+    <h2> Webworker filtr zdjęcia:</h2><h5>Wczytane zdjęcie zostanie przeskalowane i dodane do bazy danych wraz z filtrem przy dodawaniu nowego klienta.<br>Webworker generuje wartość filtru dla wpisanych danych.</h5>
+    <input type="url" id="add_image" placeholder="img URL" value="https://upload.wikimedia.org/wikipedia/en/thumb/5/5f/Original_Doge_meme.jpg/300px-Original_Doge_meme.jpg"/>
+    <input type="button" value="Wyświetl obraz/wstaw filtr" id="btn1" onclick="drawCanvas()"/>
+    <button onclick="trig_Worker_2()">Webworker_7b (wylicz RGB)</button>
+    <input type="button" value="Zresetuj filtr" onclick="resetFilter()"/>
+    <br><input type="text" placeholder="Output: RGB value" id="rgb_val" value="rgba(0,0,0,0)" readonly><br></br>
+    <canvas id="myCanvas" width="300" height="300" style="box-shadow:0px 0px 0px 1px black inset;"></canvas>
 </body>
 </html>

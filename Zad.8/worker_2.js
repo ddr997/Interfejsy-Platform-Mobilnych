@@ -19,7 +19,7 @@ onmessage = function (e){
         r = sum % 255;
         g = 255 - (r);
         b = (0.5*r>125)?99:199;
-        return "rgb("+r+","+g+","+b+")";
+        return "rgba("+r+","+g+","+b+",0.5)";
     }
     var rec = e.data;
     var data = CountNumer(rec);

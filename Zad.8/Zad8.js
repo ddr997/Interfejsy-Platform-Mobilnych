@@ -71,10 +71,11 @@ function addEmployee() {
     var age = $('#add_age').val();
     var nd = $('#add_nd').val();
     var postal = $('#add_postal').val();
-    var email = $('#add_email').val();
+    var email = $('#add_email').val()
     var www = $('#add_www').val();
     var date = $('#add_date').val();
-    var img = document.querySelector('#canvas').toDataURL('image/jpeg', 1.0);
+    var img = document.getElementById('myCanvas').toDataURL('image/jpeg', 1.0);
+
     var request = db.transaction(["employee"], "readwrite")
         .objectStore("employee")
         .add({
@@ -88,7 +89,7 @@ function addEmployee() {
             www: www,
             date: date,
             img: img
-        });
+        });    
     request.onsuccess = function (event) {
         loadTable();
         clearButtons();
@@ -166,7 +167,7 @@ function searchtable() {
                     '<td class="Email">' + cursor.value.email + '</td>' +
                     '<td class="WWW">' + cursor.value.www + '</td>' +
                     '<td class="Data">' + cursor.value.date + '</td>' +
-                    '<td class="Image"> <img src="' + cursor.value.picture + '" style="width:100; height:100px;"> </td>' +
+                    '<td class="Image"> <img src="' + cursor.value.picture + '" width="100" height="100"> </td>' +
                     '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                     '</tr>');
                                                     } 
@@ -210,9 +211,7 @@ function generateData(){
 }
 
 function trig_Worker(){
-    console.log("clicked!");
     const worker = new Worker('./worker.js');
-    console.log("clicked!");
 
     var temp_id = document.getElementById("add_id").value;
     var temp_name = document.getElementById("add_name").value;
@@ -287,14 +286,13 @@ function refresh(){
     data_fromWorker = e.data;
     document.getElementById("rgb_val").value = data_fromWorker;
     document.getElementById('layer').style.backgroundColor =  data_fromWorker;
-    document.getElementById('layer').style.opacity = 0.5;
+    document.getElementById('layer').style.opacity = 0.5;    var canvas = document.querySelector('canvas');
+}
 
-    var canvas = document.querySelector('canvas');
-    var ctx = canvas.getContext('2d');
-    var image = new Image;
-    ctx.drawImage(image, 0, 0, 100, 100);
-    ctx.fillStyle = data_fromWorker;
-    ctx.fillRect(0, 0, 100, 100);
-    } ;
-    image.src = imageURL;
-}   
+function drawCanvas(){
+    var c = document.getElementById('myCanvas');
+    var ctx = c.getContext("2d");
+    var img = new Image();
+    img.src = document.getElementById('add_image').value;
+    ctx.drawImage(img, myCanvas.width, myCanvas.height);
+}

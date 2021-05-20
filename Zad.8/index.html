@@ -19,7 +19,7 @@
             <th style="width:14em">Email</th>
             <th style="width:16em">WWW</th>
             <th style="width:11em">Data</th>
-            <th style="width:11em">Zdjecie</th>
+            <th>Zdjecie</th>
         </thead>
     </table><br>
     <label for="ID">ID:</label> <input id="add_id" type="text" placeholder="01" pattern="[0-9]{1-6}"><i> (to samo ID edytuje klienta)</i></br></br>
@@ -31,22 +31,28 @@
     <label for="email">Adres Email: </label> <input id="add_email" type="text" placeholder="email@wp.pl" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"><br><br>
     <label for="www">Strona WWW:</label><input type="text" id="add_www" pattern="https?://.*" placeholder="https://onet.pl"><br><br>
     <label for="date">Data: </label> <input type="text" id="add_date" placeholder="Wed Apr 28 2021"><br><br>
-    <label for="img">Link do zdjęcia (wstawia do bazy danych): </label><input type="url" id="add_image" placeholder="img URL" value="https://i.pinimg.com/736x/65/e9/4d/65e94d9235842f1c301d9e90c150511d.jpg"/><br><br>
-    <button onclick="addEmployee()">Wyślij</button> <button onclick="generateData()">GENERUJ LOSOWE DANE</button>
+    <!-- <label for="img">Link do zdjęcia (wstawia do bazy danych): </label><input type="url" id="add_image" placeholder="img URL" value="https://i.pinimg.com/736x/65/e9/4d/65e94d9235842f1c301d9e90c150511d.jpg"/><br><br> -->
+    <button onclick="addEmployee()">Wyślij</button> 
+    <button onclick="generateData()">GENERUJ LOSOWE DANE</button>
     <button onclick="trig_Worker()">Webworker_7 (zmiana wielk. liter)</button><br></br>
 
-
-    <form action="#" method="post">
     <h2> Webworker filtr zdjęcia:</h2>
-    <input type="url" id="add_image" placeholder="img URL" value="https://i.pinimg.com/736x/65/e9/4d/65e94d9235842f1c301d9e90c150511d.jpg"/><input type="button" value="Show Image" id="btn1"/>
-    </form>
+    <input type="url" id="add_image" placeholder="img URL" value="https://i.pinimg.com/736x/65/e9/4d/65e94d9235842f1c301d9e90c150511d.jpg"/>
+    <input type="button" value="Wyświetl/odswież obraz" id="btn1"/><br><br>
     <button onclick="trig_Worker_2()">Webworker_7b (wylicz RGB i wstaw filtr)</button><input type="text" placeholder="RGB value" id="rgb_val"><br></br>
-    <div id="layer" style="width: 300px; height:300px; position:absolute;"></div><div id="photo" style="width: 300px; height:300px;"></div>
-      <script>
-      document.getElementById('btn1').addEventListener('click', function(){
-      document.getElementById('photo').innerHTML = '<img src="'+ document.getElementById('add_image').value +'" alt="Image" id="up_photo" style="max-width:100%; max-height:100%; display: block;"/>';
-      document.getElementById('layer').style.backgroundColor = 'transparent';
-      });
+    <div id="layer" style="width: 300px; height:300px; position:absolute;"></div><canvas id="myCanvas" width="300" height="300"></canvas>
+
+    <script>
+        document.getElementById('btn1').addEventListener('click', function(){
+            var c = document.getElementById('myCanvas');
+            var ctx = c.getContext("2d");
+            var img = new Image();
+            img.crossOrigin = 'Anonymous';
+            img.onload=function() {
+                ctx.drawImage(img,0,0, myCanvas.width, myCanvas.height);
+            }
+            img.src = document.getElementById('add_image').value;
+    });
     </script>
 </body>
 </html>

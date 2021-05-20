@@ -53,6 +53,7 @@ function loadTable() {
                 '<td class="Email">' + cursor.value.email + '</td>' +
                 '<td class="WWW">' + cursor.value.www + '</td>' +
                 '<td class="Data">' + cursor.value.date + '</td>' +
+                '<td class="Image"> <img src="' + cursor.value.picture + '" width="100" height="100"> </td>' +
                 '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                 '</tr>');
                 
@@ -73,6 +74,7 @@ function addEmployee() {
     var email = $('#add_email').val();
     var www = $('#add_www').val();
     var date = $('#add_date').val();
+    var img = document.querySelector('#canvas').toDataURL('image/jpeg', 1.0);
     var request = db.transaction(["employee"], "readwrite")
         .objectStore("employee")
         .add({
@@ -84,7 +86,8 @@ function addEmployee() {
             postal: postal,
             email: email,
             www: www,
-            date: date
+            date: date,
+            img: img
         });
     request.onsuccess = function (event) {
         loadTable();
@@ -92,7 +95,7 @@ function addEmployee() {
     };
 
     request.onerror = function (event) {
-        var request = db.transaction(["employee"], "readwrite").objectStore("employee").delete(employeeID)
+        var request = db.transaction(["employee"], "readwrite").objectStore("employee").delete(employeeID);
         var request = db.transaction(["employee"], "readwrite")
         .objectStore("employee")
         .add({
@@ -104,7 +107,8 @@ function addEmployee() {
             postal: postal,
             email: email,
             www: www,
-            date: date
+            date: date,
+            img: img
         });
         loadTable();
         clearButtons();
@@ -162,6 +166,7 @@ function searchtable() {
                     '<td class="Email">' + cursor.value.email + '</td>' +
                     '<td class="WWW">' + cursor.value.www + '</td>' +
                     '<td class="Data">' + cursor.value.date + '</td>' +
+                    '<td class="Image"> <img src="' + cursor.value.picture + '" style="width:100; height:100px;"> </td>' +
                     '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                     '</tr>');
                                                     } 
@@ -247,8 +252,8 @@ function MessageFromWorker(e){
 }
 
 function refresh(){
-loadTable();
-                  }
+    loadTable();
+}
 
 //////////////////////////////////////////////////////Zad7b
 
@@ -283,4 +288,13 @@ loadTable();
     document.getElementById("rgb_val").value = data_fromWorker;
     document.getElementById('layer').style.backgroundColor =  data_fromWorker;
     document.getElementById('layer').style.opacity = 0.5;
+
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    var image = new Image;
+    ctx.drawImage(image, 0, 0, 100, 100);
+    ctx.fillStyle = data_fromWorker;
+    ctx.fillRect(0, 0, 100, 100);
+    } ;
+    image.src = imageURL;
 }   

@@ -1,0 +1,50 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="Zad8.js"></script>
+    <link rel="stylesheet" href="Zad8.css">
+</head>
+<body style="margin: 20 px auto;">
+    <i>Wyszukaj w tabeli:</i><input type="text" id="search" placeholder="Wyszukaj tekst w tabeli" style="margin-left: 10px;"></input>
+    <button onclick="refresh();">Odśwież tabele</button>
+    <br><br>
+    <table border=1 id="tabela">
+        <thead>
+            <th style="width:2em">ID</th>
+            <th style="width:6em">Imie</th>
+            <th style="width:6em">Nazwisko</th>
+            <th style="width:3em">Wiek</th>
+            <th style="width:10em">Numer dowodu</th>
+            <th style="width:8em">Kod pocztowy</th>
+            <th style="width:14em">Email</th>
+            <th style="width:16em">WWW</th>
+            <th style="width:11em">Data</th>
+            <th>Zdjecie</th>
+        </thead>
+    </table>
+    <div id="formularz">
+    <h2>Formularz:</h2>
+    <label for="ID">ID:</label> <input id="add_id" type="text" placeholder="01" pattern="[0-9]+"></br></br>
+    <label for="imie">Imie: </label> <input id="add_name" type="text" placeholder="Jan" pattern="[a-zA-Z]{2,64}"><br><br>
+    <label for="nazwisko">Nazwisko: </label> <input id="add_surname" type="text" placeholder="Kowalski" pattern="[a-zA-Z]{2,64}"><br><br>
+    <label for="wiek">Wiek: </label><input id="add_age" type="text" placeholder="21" pattern="[0-9]+"><br><br>
+    <label for="numer_dowodu">Numer dowodu:</label><input type="text" id="add_nd" pattern="[A-Z]{3}[0-9]{6}" placeholder="ZZA423567"><br><br>
+    <label for="kod_pocztowy">Kod pocztowy: </label> <input id="add_postal" type="text" placeholder="11-500" pattern="[0-9]{2}-[0-9]{3}"><br><br>
+    <label for="email">Adres Email: </label> <input id="add_email" type="text" placeholder="email@wp.pl" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"><br><br>
+    <label for="www">Strona WWW:</label><input type="text" id="add_www" pattern="https?://.*" placeholder="https://onet.pl"><br><br>
+    <label for="date">Data: </label> <input type="text" id="add_date" placeholder="Wed Apr 28 2021"><br><br>
+    </div>
+    
+    <button onclick="addEmployee()">Wyślij</button> 
+    <button onclick="generateData()">GENERUJ LOSOWE DANE</button>
+    <button onclick="trig_Worker()">Webworker_7 (zmiana wielk. liter)</button><br></br>
+
+    <h2> Webworker filtr zdjęcia:</h2><h5>Wczytane zdjęcie zostanie przeskalowane i dodane do bazy danych wraz z filtrem przy dodawaniu nowego klienta.<br>Webworker generuje wartość filtru dla wpisanych danych.</h5>
+    <input type="url" id="add_image" placeholder="img URL" value="https://upload.wikimedia.org/wikipedia/en/thumb/5/5f/Original_Doge_meme.jpg/300px-Original_Doge_meme.jpg"/>
+    <input type="button" value="Wyświetl obraz/wstaw filtr" id="btn1" onclick="drawCanvas()"/>
+    <button onclick="trig_Worker_2()">Webworker_7b (wylicz RGB)</button>
+    <input type="button" value="Zresetuj filtr" onclick="resetFilter()"/>
+    <br><input type="text" placeholder="Output: RGB value" id="rgb_val" value="rgba(0,0,0,0)" readonly><br></br>
+    <canvas id="myCanvas" width="300" height="300" style="box-shadow:0px 0px 0px 1px black inset;"></canvas>
+</body>
+</html>

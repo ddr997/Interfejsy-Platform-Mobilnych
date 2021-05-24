@@ -15,18 +15,18 @@ var db;
 var request = window.indexedDB.open("newDatabase", 1);
 
 request.onerror = function (event) {
-    console.log("error: ");
+    console.log("Nie udało się połączyć z bazą");
 };
 
 request.onsuccess = function (event) {
     db = request.result;
-    console.log("success: ", db);
+    console.log("Udało się polączyć z bazą: ", db);
     loadTable();
 };
 
 request.onupgradeneeded = function (event) {
     var db = event.target.result;
-    var objectStore = db.createObjectStore("employee", {keyPath: "id"});
+    var objectStore = db.createObjectStore("employee", {keyPath: "id", autoIncrement: true});
     for (var i in employeeData) {
         objectStore.add(employeeData[i]);
     }
@@ -38,7 +38,7 @@ $(function(){
     });
   });
 
-  window.onerror = function(){
+window.onerror = function(){
     return true;
  }
 
@@ -46,21 +46,21 @@ function loadTable() {
     var employees = "";
     $('.employee').remove();
 
-    var objectStore = db.transaction("employee").objectStore("employee");
+    var objectStore = db.transaction("employee",  "readwrite").objectStore("employee");
     objectStore.openCursor().onsuccess = function (event) {
     var cursor = event.target.result;
     if (cursor) {
             employees = employees.concat(
                 '<tr class="employee">' +
-                '<td class="ID">' + cursor.key + '</td>' +
-                '<td class="Imie" contenteditable="true">' + cursor.value.name + '</td>' +
-                '<td class="Nazwisko" contenteditable="true">' + cursor.value.surname + '</td>' +
-                '<td class="Wiek" contenteditable="true">' + cursor.value.age + '</td>' +
-                '<td class="numer_dowodu" contenteditable="true">' + cursor.value.nd + '</td>' +
-                '<td class="kod_pocztowy" contenteditable="true">' + cursor.value.postal + '</td>' +
-                '<td class="Email" contenteditable="true">' + cursor.value.email + '</td>' +
-                '<td class="WWW" contenteditable="true">' + cursor.value.www + '</td>' +
-                '<td class="Data" contenteditable="true">' + cursor.value.date + '</td>' +
+                '<td class="ID" onblur="greeting(this.id,'+cursor.key+',1)" contenteditable="true" id="id'+ cursor.key +'">' + cursor.key + '</td>' +
+                '<td class="Imie" onblur="greeting(this.id,'+cursor.key+',2)" contenteditable="true" id="imie'+ cursor.key +'">' + cursor.value.name + '</td>' +
+                '<td class="Nazwisko" onblur="greeting(this.id,'+cursor.key+',3)" contenteditable="true" id="nazwisko'+ cursor.key +'">' + cursor.value.surname + '</td>' +
+                '<td class="Wiek" onblur="greeting(this.id,'+cursor.key+',4)" contenteditable="true" id="wiek'+ cursor.key +'">' + cursor.value.age + '</td>' +
+                '<td class="numer_dowodu" onblur="greeting(this.id,'+cursor.key+',5)" contenteditable="true" id="numer_dowodu'+ cursor.key +'">' + cursor.value.nd + '</td>' +
+                '<td class="kod_pocztowy" onblur="greeting(this.id,'+cursor.key+',6)" contenteditable="true" id="kod_pocztowy'+ cursor.key +'">' + cursor.value.postal + '</td>' +
+                '<td class="Email" onblur="greeting(this.id,'+cursor.key+',7)" contenteditable="true" id="email'+ cursor.key +'">' + cursor.value.email + '</td>' +
+                '<td class="WWW" onblur="greeting(this.id,'+cursor.key+',8)"  contenteditable="true" id="www'+ cursor.key +'">' + cursor.value.www + '</td>' +
+                '<td class="Data" onblur="greeting(this.id,'+cursor.key+',9)"  contenteditable="true" id="data'+ cursor.key +'">' + cursor.value.date + '</td>' +
                 '<td class="Image"><img src="' + cursor.value.img + '" width="100" height="100"></td>' +
                 '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                 '</tr>');
@@ -163,27 +163,27 @@ function searchtable() {
                 cursor.value.email.toLowerCase() +
                 cursor.value.www.toLowerCase() +
                 cursor.value.date.toLowerCase()).includes($('#search').val().toLowerCase().replace(/ /g,''))){
-                employees = employees.concat(
+                    employees = employees.concat(
                     '<tr class="employee">' +
-                    '<td class="ID">' + cursor.key + '</td>' +
-                    '<td class="Imie">' + cursor.value.name + '</td>' +
-                    '<td class="Nazwisko">' + cursor.value.surname + '</td>' +
-                    '<td class="Wiek">' + cursor.value.age + '</td>' +
-                    '<td class="numer_dowodu">' + cursor.value.nd + '</td>' +
-                    '<td class="kod_pocztowy">' + cursor.value.postal + '</td>' +
-                    '<td class="Email">' + cursor.value.email + '</td>' +
-                    '<td class="WWW">' + cursor.value.www + '</td>' +
-                    '<td class="Data">' + cursor.value.date + '</td>' +
-                    '<td class="Image"> <img src="' + cursor.value.img + '" width="100" height="100"> </td>' +
+                    '<td class="ID" onblur="greeting(this.id,'+cursor.key+',1)" contenteditable="true" id="id'+ cursor.key +'">' + cursor.key + '</td>' +
+                    '<td class="Imie" onblur="greeting(this.id,'+cursor.key+',2)" contenteditable="true" id="imie'+ cursor.key +'">' + cursor.value.name + '</td>' +
+                    '<td class="Nazwisko" onblur="greeting(this.id,'+cursor.key+',3)" contenteditable="true" id="nazwisko'+ cursor.key +'">' + cursor.value.surname + '</td>' +
+                    '<td class="Wiek" onblur="greeting(this.id,'+cursor.key+',4)" contenteditable="true" id="wiek'+ cursor.key +'">' + cursor.value.age + '</td>' +
+                    '<td class="numer_dowodu" onblur="greeting(this.id,'+cursor.key+',5)" contenteditable="true" id="numer_dowodu'+ cursor.key +'">' + cursor.value.nd + '</td>' +
+                    '<td class="kod_pocztowy" onblur="greeting(this.id,'+cursor.key+',6)" contenteditable="true" id="kod_pocztowy'+ cursor.key +'">' + cursor.value.postal + '</td>' +
+                    '<td class="Email" onblur="greeting(this.id,'+cursor.key+',7)" contenteditable="true" id="email'+ cursor.key +'">' + cursor.value.email + '</td>' +
+                    '<td class="WWW" onblur="greeting(this.id,'+cursor.key+',8)"  contenteditable="true" id="www'+ cursor.key +'">' + cursor.value.www + '</td>' +
+                    '<td class="Data" onblur="greeting(this.id,'+cursor.key+',9)"  contenteditable="true" id="data'+ cursor.key +'">' + cursor.value.date + '</td>' +
+                    '<td class="Image"><img src="' + cursor.value.img + '" width="100" height="100"></td>' +
                     '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                     '</tr>');
-                                                    } 
+                } 
         }
          else{
             $('thead').after(employees); // no more events
         }
-        cursor.continue();
-        };
+    cursor.continue();
+    };
 }
 
 function randomDate(start, end) {
@@ -311,4 +311,74 @@ function drawCanvas(){
 
 function resetFilter(){
     document.getElementById('rgb_val').value = "rgba(0,0,0,0)"
+}
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     $("#tabela td").click(function() {
+//         x = $("#imie12").text();
+//         alert(x);
+//         // alert( "Handler for .click() called." );
+//       });
+//   });
+
+function greeting(val, id, col){ //wartosc td, id wiersza, kolumna
+    x = document.getElementById(val).innerText;
+    console.log("Wartosc",x);
+    console.log("Id",id);
+    console.log("Col",col);
+
+    const objectStore = db.transaction(['employee'], 'readwrite').objectStore('employee');
+    objectStore.openCursor().onsuccess = function(event) {
+        const cursor = event.target.result;
+        if (cursor) {
+            if (cursor.value.id == id) {
+                const updateData = cursor.value;
+                switch(col){
+                    case 1:
+                    updateData.id = x;
+                    break;
+
+                    case 2:
+                    updateData.name = x;
+                    break;
+
+                    case 3:
+                    updateData.surname = x;
+                    break;
+
+                    case 4:
+                    updateData.age = x;
+                    break;
+
+                    case 5:
+                    updateData.nd = x;
+                    break;
+
+                    case 6:
+                    updateData.postal = x;
+                    break;
+
+                    case 7:
+                    updateData.email = x;
+                    break;
+
+                    case 8:
+                    updateData.www = x;
+                    break;
+
+                    case 8:
+                    updateData.date = x;
+                    break;
+
+                    default:
+                    return;
+                }
+                const request = cursor.update(updateData);
+                request.onsuccess = function() {
+                    console.log('data updated');
+                };
+            };
+            cursor.continue();
+        }
+    };
 }

@@ -174,13 +174,13 @@ function searchtable() {
                     '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                     '</tr>');
                                                     } 
-                    }
+        }
          else{
             $('thead').after(employees); // no more events
-             } 
-                cursor.continue();       
-                                                            };
-                    }
+        } 
+        cursor.continue();       
+        };
+}
 
 function randomDate(start, end) {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));

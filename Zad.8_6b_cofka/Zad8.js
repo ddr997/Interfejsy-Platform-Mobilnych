@@ -38,6 +38,10 @@ $(function(){
     });
   });
 
+  window.onerror = function(){
+    return true;
+ }
+
 function loadTable() {
     var employees = "";
     $('.employee').remove();
@@ -177,8 +181,8 @@ function searchtable() {
         }
          else{
             $('thead').after(employees); // no more events
-        } 
-        cursor.continue();       
+        }
+        cursor.continue();
         };
 }
 

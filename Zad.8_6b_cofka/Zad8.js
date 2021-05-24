@@ -53,14 +53,14 @@ function loadTable() {
             employees = employees.concat(
                 '<tr class="employee">' +
                 '<td class="ID">' + cursor.key + '</td>' +
-                '<td class="Imie">' + cursor.value.name + '</td>' +
-                '<td class="Nazwisko">' + cursor.value.surname + '</td>' +
-                '<td class="Wiek">' + cursor.value.age + '</td>' +
-                '<td class="numer_dowodu">' + cursor.value.nd + '</td>' +
-                '<td class="kod_pocztowy">' + cursor.value.postal + '</td>' +
-                '<td class="Email">' + cursor.value.email + '</td>' +
-                '<td class="WWW">' + cursor.value.www + '</td>' +
-                '<td class="Data">' + cursor.value.date + '</td>' +
+                '<td class="Imie" contenteditable="true">' + cursor.value.name + '</td>' +
+                '<td class="Nazwisko" contenteditable="true">' + cursor.value.surname + '</td>' +
+                '<td class="Wiek" contenteditable="true">' + cursor.value.age + '</td>' +
+                '<td class="numer_dowodu" contenteditable="true">' + cursor.value.nd + '</td>' +
+                '<td class="kod_pocztowy" contenteditable="true">' + cursor.value.postal + '</td>' +
+                '<td class="Email" contenteditable="true">' + cursor.value.email + '</td>' +
+                '<td class="WWW" contenteditable="true">' + cursor.value.www + '</td>' +
+                '<td class="Data" contenteditable="true">' + cursor.value.date + '</td>' +
                 '<td class="Image"><img src="' + cursor.value.img + '" width="100" height="100"></td>' +
                 '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                 '</tr>');

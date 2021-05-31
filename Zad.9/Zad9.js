@@ -65,7 +65,6 @@ function loadTable() {
                 '<td class="Image"><img src="' + cursor.value.img + '" width="100" height="100"></td>' +
                 '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                 '</tr>');
-
                 var option = document.createElement("option");
                 option.text = cursor.value.name + " " + cursor.value.surname;
                 option.value = cursor.key;
@@ -151,6 +150,7 @@ function clearButtons() {
     $('#add_email').val("");
     $('#add_www').val("");
     $("#add_date").val("");
+    $('#mySelect').empty();
 };
 
 function searchtable() {

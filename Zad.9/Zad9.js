@@ -70,7 +70,6 @@ function loadTable() {
                 option.text = cursor.value.name + " " + cursor.value.surname;
                 option.value = cursor.key;
                 x.add(option);
-                console.log('Dotarlo do '+ cursor.value.name +'');
                 } else {
             $('thead').after(employees);
                   }
@@ -393,7 +392,42 @@ function greeting(val, id, col){ //wartosc td, id wiersza, kolumna
 function faktura(){
     var result = document.getElementById("mySelect").value; 
     var text = $( "#mySelect option:selected" ).text();
-    console.log(result,text);
     var opened = window.open("");
-    opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
+
+    var output = "c";
+    var suma = 0;
+    o1 = document.getElementById("e1");
+    o2 = document.getElementById("e2");
+    o3 = document.getElementById("e3");
+    o4 = document.getElementById("e4");
+        if(o1.checked){
+            output += "Przedmiot: " + + "Cena: " + o1.value + "</br>"
+            console.log(output);
+            suma += o1.value;
+        }
+        if(o2.checked){
+            output.concat("Przedmiot: "+ o2.name + " Cena : "+ o2.value + " </br>");
+        }
+    console.log(output);
+    var objectStore = db.transaction("employee").objectStore("employee");
+    objectStore.openCursor().onsuccess = function (event) {
+    var cursor = event.target.result;
+        if (cursor) {
+            if(cursor.key == result){
+                    opened.document.write(
+                        "<html><head><title>Faktura</title><h1>Faktura</h1></head><body><h2>Dane do faktury:</h2><ul style='list-style-type:none;'><li>Imie: "+ 
+                        cursor.value.name + "</li><li>Nazwisko: " +
+                        cursor.value.surname + "</li><li>Wiek: " +
+                        cursor.value.age + "</li><li>Numer dowodu: " +
+                        cursor.value.nd + "</li><li>Kod pocztowy: " +
+                        cursor.value.postal + "</li><li>Email: " +
+                        cursor.value.email + "</li><li>Strona WWW: " +
+                        cursor.value.www + "</li><li>Data: " +
+                        cursor.value.date + "</li></ul>" +
+                        "<h2>Zakupiono:</h2>" + output +
+                        "</body></html>");
+                } 
+        }
+    cursor.continue();
+    };
 }

@@ -49,6 +49,7 @@ function loadTable() {
     var objectStore = db.transaction("employee",  "readwrite").objectStore("employee");
     objectStore.openCursor().onsuccess = function (event) {
     var cursor = event.target.result;
+    var x = document.getElementById("mySelect");
     if (cursor) {
             employees = employees.concat(
                 '<tr class="employee">' +
@@ -64,6 +65,12 @@ function loadTable() {
                 '<td class="Image"><img src="' + cursor.value.img + '" width="100" height="100"></td>' +
                 '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                 '</tr>');
+
+                var option = document.createElement("option");
+                option.text = cursor.value.name + " " + cursor.value.surname;
+                option.value = cursor.key;
+                x.add(option);
+                console.log('Dotarlo do '+ cursor.value.name +'');
                 } else {
             $('thead').after(employees);
                   }
@@ -384,6 +391,9 @@ function greeting(val, id, col){ //wartosc td, id wiersza, kolumna
 }
 
 function faktura(){
+    var result = document.getElementById("mySelect").value; 
+    var text = $( "#mySelect option:selected" ).text();
+    console.log(result,text);
     var opened = window.open("");
     opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
 }

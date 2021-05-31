@@ -394,19 +394,27 @@ function faktura(){
     var text = $( "#mySelect option:selected" ).text();
     var opened = window.open("");
 
-    var output = "c";
+    var output = "";
     var suma = 0;
     o1 = document.getElementById("e1");
     o2 = document.getElementById("e2");
     o3 = document.getElementById("e3");
     o4 = document.getElementById("e4");
         if(o1.checked){
-            output += "Przedmiot: " + + "Cena: " + o1.value + "</br>"
-            console.log(output);
-            suma += o1.value;
+            output += "Przedmiot: " + o1.name + " ------> " + "Cena: " + o1.value + "</br>"
+            suma += parseInt(o1.value);
         }
         if(o2.checked){
-            output.concat("Przedmiot: "+ o2.name + " Cena : "+ o2.value + " </br>");
+            output += "Przedmiot: " + o2.name+ " ------> " + "Cena: " + o2.value + "</br>"
+            suma += parseInt(o2.value);
+        }
+        if(o3.checked){
+            output += "Przedmiot: " + o3.name + " ------> " +"Cena: " + o3.value + "</br>"
+            suma += parseInt(o3.value);
+        }
+        if(o4.checked){
+            output += "Przedmiot: " + o4.name + " ------> " + "Cena: " + o4.value + "</br>"
+            suma += parseInt(o4.value);
         }
     console.log(output);
     var objectStore = db.transaction("employee").objectStore("employee");
@@ -425,6 +433,7 @@ function faktura(){
                         cursor.value.www + "</li><li>Data: " +
                         cursor.value.date + "</li></ul>" +
                         "<h2>Zakupiono:</h2>" + output +
+                        "<h3>Suma do zapłaty:" + suma + " zł </h3>"+
                         "</body></html>");
                 } 
         }

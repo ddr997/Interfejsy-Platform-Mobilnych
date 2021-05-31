@@ -47,5 +47,24 @@
     <input type="button" value="Zresetuj filtr" onclick="resetFilter()"/>
     <br><input type="text" placeholder="Output: RGB value" id="rgb_val" value="rgba(0,0,0,0)" readonly><br></br>
     <canvas id="myCanvas" width="300" height="300" style="box-shadow:0px 0px 0px 1px black inset;"></canvas>
+
+    <h2>FAKTURA</h2>
+    <form action="/action_page.php">
+        <h4>Wybierz klienta:</h4>
+        <select>
+            <option>Opcja 1</option>
+            <option>Opcja 2</option>
+            <option>Opcja 3</option>
+        </select>
+        
+        <h4>Lista zakupów:</h4>
+        <input type="checkbox" id="e1" name="Bike" value="Bike">
+        <label for="vehicle1"> I have a bike</label><br>
+        <input type="checkbox" id="e2" name="Car" value="Car">
+        <label for="vehicle2"> I have a car</label><br>
+        <input type="checkbox" id="e3" name="Boat" value="Boat">
+        <label for="vehicle3"> I have a boat</label><br><br>
+        <input type="submit" value="Submit" onClick="faktura()">
+    </form>
 </body>
 </html>

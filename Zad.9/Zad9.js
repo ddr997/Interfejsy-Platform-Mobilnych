@@ -66,7 +66,7 @@ function loadTable() {
                 '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                 '</tr>');
                 var option = document.createElement("option");
-                option.text = cursor.value.name + " " + cursor.value.surname;
+                option.text = cursor.value.name + " " + cursor.value.surname + " ID("+ cursor.key+ ")";
                 option.value = cursor.key;
                 x.add(option);
                 } else {

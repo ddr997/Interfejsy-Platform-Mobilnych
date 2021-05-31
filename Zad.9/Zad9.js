@@ -401,19 +401,19 @@ function faktura(){
     o3 = document.getElementById("e3");
     o4 = document.getElementById("e4");
         if(o1.checked){
-            output += "Przedmiot: " + o1.name + " ------> " + "Cena: " + o1.value + "</br>"
+            output += "Przedmiot: " + o1.name + " ------> " + "Cena: " + o1.value + " zł</br>"
             suma += parseInt(o1.value);
         }
         if(o2.checked){
-            output += "Przedmiot: " + o2.name+ " ------> " + "Cena: " + o2.value + "</br>"
+            output += "Przedmiot: " + o2.name+ " ------> " + "Cena: " + o2.value + " zł</br>"
             suma += parseInt(o2.value);
         }
         if(o3.checked){
-            output += "Przedmiot: " + o3.name + " ------> " +"Cena: " + o3.value + "</br>"
+            output += "Przedmiot: " + o3.name + " ------> " +"Cena: " + o3.value + " zł</br>"
             suma += parseInt(o3.value);
         }
         if(o4.checked){
-            output += "Przedmiot: " + o4.name + " ------> " + "Cena: " + o4.value + "</br>"
+            output += "Przedmiot: " + o4.name + " ------> " + "Cena: " + o4.value + " zł</br>"
             suma += parseInt(o4.value);
         }
     console.log(output);
@@ -433,7 +433,7 @@ function faktura(){
                         cursor.value.www + "</li><li>Data: " +
                         cursor.value.date + "</li></ul>" +
                         "<h2>Zakupiono:</h2>" + output +
-                        "<h3>Suma do zapłaty:" + suma + " zł </h3>"+
+                        "<h3>Suma do zapłaty: " + suma + " zł </h3>"+
                         "</body></html>");
                 } 
         }
